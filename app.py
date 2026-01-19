@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+
+# Stripe config v2
 """
 Deepsyke Core Integration - Universal Bot Framework
 This code bridges all components and should work for any bot with minimal changes
