@@ -608,7 +608,15 @@ def create_checkout_session():
     try:
         session_id = request.json.get('session_id')
         if not session_id or session_id not in conversations:
+            print(f"Invalid session: {session_id}")
             return jsonify({'error': 'Invalid session'}), 400
+
+        # Check if Stripe is configured
+        if not stripe.api_key:
+            print("Stripe API key not configured")
+            return jsonify({'error': 'Payment system not configured'}), 500
+
+        print(f"Creating checkout session for session_id: {session_id}")
 
         # Create Stripe checkout session
         checkout_session = stripe.checkout.Session.create(
@@ -632,9 +640,15 @@ def create_checkout_session():
             }
         )
 
+        print(f"Checkout session created: {checkout_session.url}")
         return jsonify({'url': checkout_session.url})
+    except stripe.error.StripeError as e:
+        print(f"Stripe API error: {e}")
+        return jsonify({'error': f'Stripe error: {str(e)}'}), 500
     except Exception as e:
-        print(f"Stripe error: {e}")
+        print(f"Unexpected error: {e}")
+        import traceback
+        traceback.print_exc()
         return jsonify({'error': str(e)}), 500
 
 
