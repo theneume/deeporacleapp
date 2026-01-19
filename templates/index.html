@@ -376,6 +376,95 @@
             }
         }
     </style>
+
+    <style>
+        /* Paywall Modal Styles */
+        .paywall-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            animation: fadeIn 0.3s ease;
+        }
+
+        .paywall-content {
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a0f2e 100%);
+            padding: 40px;
+            border-radius: 20px;
+            max-width: 400px;
+            width: 90%;
+            text-align: center;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+            border: 2px solid #daa520;
+        }
+
+        .paywall-content h2 {
+            color: #ffd700;
+            margin: 0 0 20px 0;
+            font-size: 28px;
+        }
+
+        .paywall-message {
+            color: #ffffff;
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 30px;
+        }
+
+        .paywall-features {
+            background: rgba(255, 215, 0, 0.1);
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+
+        .feature {
+            color: #ffffff;
+            padding: 8px 0;
+            font-size: 15px;
+        }
+
+        .paywall-button {
+            background: linear-gradient(135deg, #daa520 0%, #ffd700 100%);
+            color: #1a0f2e;
+            border: none;
+            padding: 15px 40px;
+            border-radius: 30px;
+            font-size: 18px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .paywall-button:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(218, 165, 32, 0.4);
+        }
+
+        .paywall-button:disabled {
+            opacity: 0.7;
+            cursor: not-allowed;
+        }
+
+        .secure-payment {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            margin-top: 20px;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+    </style>
+
 <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
 </head>
 <body>
@@ -540,6 +629,22 @@
                 <input type="text" id="messageInput" class="chat-input" placeholder="Share your thoughts...">
                 <button id="sendMessage" class="send-btn">Send</button>
             </div>
+        </div>
+    </div>
+
+    <!-- Paywall Modal -->
+    <div id="paywallModal" class="paywall-modal" style="display: none;">
+        <div class="paywall-content">
+            <h2>✨ Continue Your Journey ✨</h2>
+            <p class="paywall-message">You've used your 5 free messages. Unlock unlimited access for just <strong>$2.95</strong>!</p>
+            <div class="paywall-features">
+                <div class="feature">✓ Unlimited messaging</div>
+                <div class="feature">✓ Deep self-discovery</div>
+                <div class="feature">✓ Cultural avatar insights</div>
+                <div class="feature">✓ Personalized guidance</div>
+            </div>
+            <button id="paywallBtn" class="paywall-button">Continue - $2.95</button>
+            <p class="secure-payment">🔒 Secure payment powered by Stripe</p>
         </div>
     </div>
 
@@ -719,6 +824,8 @@
 
                 if (data.success) {
                     addMessage(data.response, 'assistant');
+                } else if (data.error === 'PAYWALL_REACHED') {
+                    showPaywall(data);
                 } else {
                     addMessage('I apologize, but I encountered an error. Please try again.', 'assistant');
                 }
@@ -730,6 +837,46 @@
 
             sendMessageBtn.disabled = false;
             messageInput.focus();
+        }
+
+        // Show paywall modal
+        function showPaywall(data) {
+            const modal = document.getElementById('paywallModal');
+            const paywallBtn = document.getElementById('paywallBtn');
+            
+            modal.style.display = 'flex';
+            
+            paywallBtn.onclick = async () => {
+                try {
+                    paywallBtn.disabled = true;
+                    paywallBtn.textContent = 'Processing...';
+                    
+                    const response = await fetch(`${API_BASE_URL}/create-checkout-session`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            session_id: sessionId
+                        })
+                    });
+                    
+                    const checkoutData = await response.json();
+                    
+                    if (checkoutData.url) {
+                        window.location.href = checkoutData.url;
+                    } else {
+                        alert('Unable to process payment. Please try again.');
+                        paywallBtn.disabled = false;
+                        paywallBtn.textContent = 'Continue - $2.95';
+                    }
+                } catch (error) {
+                    console.error('Payment error:', error);
+                    alert('Unable to process payment. Please try again.');
+                    paywallBtn.disabled = false;
+                    paywallBtn.textContent = 'Continue - $2.95';
+                }
+            };
         }
 
         // Event listeners
