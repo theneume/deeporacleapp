@@ -863,16 +863,18 @@
                     
                     const checkoutData = await response.json();
                     
-                    if (checkoutData.url) {
+                    if (response.ok && checkoutData.url) {
                         window.location.href = checkoutData.url;
                     } else {
-                        alert('Unable to process payment. Please try again.');
+                        const errorMsg = checkoutData.error || 'Unable to process payment';
+                        console.error('Payment failed:', errorMsg);
+                        alert(`Payment error: ${errorMsg}. Please try again.`);
                         paywallBtn.disabled = false;
                         paywallBtn.textContent = 'Continue - $2.95';
                     }
                 } catch (error) {
                     console.error('Payment error:', error);
-                    alert('Unable to process payment. Please try again.');
+                    alert(`Connection error: ${error.message}. Please try again.`);
                     paywallBtn.disabled = false;
                     paywallBtn.textContent = 'Continue - $2.95';
                 }
