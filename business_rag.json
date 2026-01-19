@@ -1,0 +1,82 @@
+{
+  "metadata": {
+    "business_name": "Oracle Psychology Coach",
+    "business_type": "Personal Development & Self-Discovery",
+    "description": "AI-powered psychology coach for self-exploration and personal growth",
+    "version": "1.0"
+  },
+  "services": {
+    "primary_offering": "Personalized psychology coaching based on natal type",
+    "approach": "Deep self-exploration through cultural resonance and psychological insights",
+    "focus_areas": [
+      "Self-discovery and personal identity",
+      "Understanding behavioral patterns",
+      "Emotional intelligence development",
+      "Life purpose exploration",
+      "Relationship dynamics",
+      "Personal growth strategies"
+    ]
+  },
+  "coaching_philosophy": {
+    "core_principles": [
+      "Every person has a unique psychological blueprint",
+      "Self-awareness is the foundation of growth",
+      "Cultural wisdom provides powerful mirrors for self-reflection",
+      "Understanding your type unlocks authentic living",
+      "Personal transformation comes from within"
+    ],
+    "methodology": "We use the Deepsyke natal type system combined with cultural avatar resonance to help you understand your authentic self and navigate life with clarity and purpose."
+  },
+  "session_structure": {
+    "initial_assessment": "Understanding your natal type and core patterns",
+    "exploration_phase": "Deep dive into your psychological landscape",
+    "cultural_resonance": "Connecting with avatars who mirror your journey",
+    "integration": "Applying insights to real-life situations",
+    "ongoing_support": "Continuous guidance for personal evolution"
+  },
+  "benefits": {
+    "self_understanding": "Gain profound insights into your authentic nature",
+    "clarity": "Understand why you think, feel, and act the way you do",
+    "direction": "Discover your unique path and life purpose",
+    "relationships": "Improve connections by understanding yourself and others",
+    "growth": "Accelerate personal development with targeted insights",
+    "confidence": "Build self-assurance through self-knowledge"
+  },
+  "who_this_is_for": {
+    "seekers": "Those on a journey of self-discovery",
+    "questioners": "People asking 'Who am I really?'",
+    "growth_oriented": "Individuals committed to personal evolution",
+    "introspective": "Those who value deep reflection",
+    "curious": "People fascinated by psychology and human nature",
+    "stuck": "Anyone feeling unclear about their path or purpose"
+  },
+  "unique_approach": {
+    "natal_typing": "Scientific framework for understanding psychological patterns",
+    "cultural_avatars": "Learn from historical and contemporary figures who share your type",
+    "personalized_insights": "Every session tailored to your unique psychological makeup",
+    "practical_application": "Translate insights into actionable life strategies",
+    "holistic_view": "Address mind, emotions, relationships, and life purpose"
+  },
+  "common_questions": {
+    "what_is_natal_type": "Your natal type is your psychological blueprint - the core pattern of how you process information, make decisions, and interact with the world. It's determined by your birth date and reveals your authentic nature.",
+    "how_accurate": "The Deepsyke system is based on decades of research into human psychology and behavioral patterns. Thousands of people have found profound accuracy in their type descriptions.",
+    "will_this_help": "If you're seeking deeper self-understanding, clarity about your path, or insights into your patterns and behaviors, this approach provides a powerful framework for growth.",
+    "time_commitment": "Each conversation builds on the last. You can explore at your own pace - some prefer deep weekly sessions, others check in as questions arise.",
+    "cost": "This initial exploration is complimentary. We believe everyone deserves access to self-knowledge."
+  },
+  "testimonials": {
+    "sample_feedback": [
+      "Finally understanding my type explained so much about my life patterns.",
+      "The cultural avatars gave me permission to be authentically myself.",
+      "I've done years of therapy, but this framework tied everything together.",
+      "Knowing my type helped me make a major life decision with confidence.",
+      "The insights were eerily accurate and deeply validating."
+    ]
+  },
+  "next_steps": {
+    "getting_started": "Share your birth date and let's discover your natal type",
+    "first_session": "We'll explore what your type means and how it shows up in your life",
+    "ongoing": "Continue conversations as questions and situations arise",
+    "depth": "Go as deep as you want - this is your journey"
+  }
+}
