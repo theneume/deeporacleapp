@@ -17,9 +17,20 @@ app = Flask(__name__)
 CORS(app)
 
 # Stripe Configuration
-stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', '')
+STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
 STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
 FREE_MESSAGE_LIMIT = 5  # 5 free messages before paywall
+
+# Set Stripe API key
+stripe.api_key = STRIPE_SECRET_KEY
+
+# Validate Stripe configuration
+if stripe.api_key:
+    print(f"Stripe configured with API key: {stripe.api_key[:10]}...")
+    print(f"Full key length: {len(stripe.api_key)} characters")
+else:
+    print("WARNING: Stripe API key not configured")
+    print(f"Environment variable 'STRIPE_SECRET_KEY' value: {STRIPE_SECRET_KEY[:10] if STRIPE_SECRET_KEY else 'NOT SET'}")
 
 # Store conversations in memory
 conversations = {}
@@ -614,7 +625,9 @@ def create_checkout_session():
         # Check if Stripe is configured
         if not stripe.api_key:
             print("Stripe API key not configured")
-            return jsonify({'error': 'Payment system not configured'}), 500
+            return jsonify({
+                'error': 'Payment system not configured. Please contact support.'
+            }), 500
 
         print(f"Creating checkout session for session_id: {session_id}")
 
@@ -642,14 +655,13 @@ def create_checkout_session():
 
         print(f"Checkout session created: {checkout_session.url}")
         return jsonify({'url': checkout_session.url})
-    except stripe.error.StripeError as e:
-        print(f"Stripe API error: {e}")
-        return jsonify({'error': f'Stripe error: {str(e)}'}), 500
     except Exception as e:
-        print(f"Unexpected error: {e}")
+        print(f"Stripe error: {e}")
         import traceback
         traceback.print_exc()
-        return jsonify({'error': str(e)}), 500
+        return jsonify({
+            'error': f'Payment processing error: {str(e)}'
+        }), 500
 
 
 @app.route('/webhook', methods=['POST'])
