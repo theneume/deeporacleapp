@@ -11,9 +11,15 @@ import json
 import os
 from datetime import datetime
 import random
+import stripe
 
 app = Flask(__name__)
 CORS(app)
+
+# Stripe Configuration
+stripe.api_key = os.environ.get('STRIPE_SECRET_KEY', '')
+STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
+FREE_MESSAGE_LIMIT = 5  # 5 free messages before paywall
 
 # Store conversations in memory
 conversations = {}
@@ -596,6 +602,86 @@ def health():
     return jsonify({"status": "healthy", "timestamp": datetime.now().isoformat()})
 
 
+@app.route('/api/create-checkout-session', methods=['POST'])
+def create_checkout_session():
+    """Create a Stripe checkout session for payment"""
+    try:
+        session_id = request.json.get('session_id')
+        if not session_id or session_id not in conversations:
+            return jsonify({'error': 'Invalid session'}), 400
+
+        # Create Stripe checkout session
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[{
+                'price_data': {
+                    'currency': 'usd',
+                    'product_data': {
+                        'name': 'Oracle Psychology Session',
+                        'description': 'Continue your self-discovery journey',
+                    },
+                    'unit_amount': 295,  # $2.95 in cents
+                },
+                'quantity': 1,
+            }],
+            mode='payment',
+            success_url=request.url_root + 'payment-success?session_id=' + session_id,
+            cancel_url=request.url_root + '?session_id=' + session_id,
+            metadata={
+                'session_id': session_id
+            }
+        )
+
+        return jsonify({'url': checkout_session.url})
+    except Exception as e:
+        print(f"Stripe error: {e}")
+        return jsonify({'error': str(e)}), 500
+
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    """Handle Stripe webhook events"""
+    payload = request.get_data(as_text=True)
+    sig_header = request.headers.get('Stripe-Signature')
+    
+    if not STRIPE_WEBHOOK_SECRET:
+        # If webhook secret not set, still allow payment to work (for testing)
+        print("Warning: STRIPE_WEBHOOK_SECRET not set")
+        return jsonify({'success': True}), 200
+    
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, STRIPE_WEBHOOK_SECRET
+        )
+    except ValueError as e:
+        return jsonify({'error': 'Invalid payload'}), 400
+    except stripe.error.SignatureVerificationError as e:
+        return jsonify({'error': 'Invalid signature'}), 400
+    
+    # Handle checkout.session.completed event
+    if event['type'] == 'checkout.session.completed':
+        session_obj = event['data']['object']
+        session_id = session_obj.get('metadata', {}).get('session_id')
+        
+        if session_id and session_id in conversations:
+            conversations[session_id]['paid'] = True
+            conversations[session_id]['payment_id'] = session_obj.payment_intent
+            print(f"Payment received for session {session_id}")
+    
+    return jsonify({'success': True}), 200
+
+
+@app.route('/payment-success')
+def payment_success():
+    """Handle successful payment"""
+    session_id = request.args.get('session_id')
+    if session_id and session_id in conversations:
+        conversations[session_id]['paid'] = True
+        conversations[session_id]['payment_id'] = 'paid'
+    
+    return render_template('index.html', payment_success=True)
+
+
 @app.route('/init-profile', methods=['POST'])
 def init_profile():
     """Initialize user profile and calculate natal type"""
@@ -674,7 +760,9 @@ def init_profile():
             'message_count': 0,
             'last_ca_message': 0,
             'used_gravitors': [],  # Track gravitors to prevent repetition
-            'tone_mode': 'standard'  # Track current tone mode
+            'tone_mode': 'standard',  # Track current tone mode
+            'paid': False,  # Track if user has paid
+            'payment_id': None  # Stripe payment ID
         }
         
         return jsonify({
@@ -701,6 +789,18 @@ def chat():
         
         session = conversations[session_id]
         profile = session['profile']
+        
+        # Check paywall - 5 free messages, then require payment
+        message_count = session.get('message_count', 0)
+        if not session.get('paid', False) and message_count >= FREE_MESSAGE_LIMIT:
+            return jsonify({
+                'success': False,
+                'error': 'PAYWALL_REACHED',
+                'message_count': message_count,
+                'free_limit': FREE_MESSAGE_LIMIT,
+                'price': '$2.95',
+                'requires_payment': True
+            }), 402  # 402 Payment Required
         
         # Check if user is asking for a type calculation
         if detect_type_calculation_request(user_message):
