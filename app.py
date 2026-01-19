@@ -1,6 +1,4 @@
 #!/usr/bin/env python3
-
-# Stripe config v2
 """
 Deepsyke Core Integration - Universal Bot Framework
 This code bridges all components and should work for any bot with minimal changes
@@ -13,7 +11,7 @@ import json
 import os
 from datetime import datetime
 import random
-import stripe
+import stripe as stripe_module
 
 app = Flask(__name__)
 CORS(app)
@@ -24,12 +22,12 @@ STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
 FREE_MESSAGE_LIMIT = 5  # 5 free messages before paywall
 
 # Set Stripe API key
-stripe.api_key = STRIPE_SECRET_KEY
+stripe_module.api_key = STRIPE_SECRET_KEY
 
 # Validate Stripe configuration
-if stripe.api_key:
-    print(f"Stripe configured with API key: {stripe.api_key[:10]}...")
-    print(f"Full key length: {len(stripe.api_key)} characters")
+if stripe_module.api_key:
+    print(f"Stripe configured with API key: {stripe_module.api_key[:10]}...")
+    print(f"Full key length: {len(stripe_module.api_key)} characters")
 else:
     print("WARNING: Stripe API key not configured")
     print(f"Environment variable 'STRIPE_SECRET_KEY' value: {STRIPE_SECRET_KEY[:10] if STRIPE_SECRET_KEY else 'NOT SET'}")
@@ -625,7 +623,7 @@ def create_checkout_session():
             return jsonify({'error': 'Invalid session'}), 400
 
         # Check if Stripe is configured
-        if not stripe.api_key:
+        if not stripe_module.api_key:
             print("Stripe API key not configured")
             return jsonify({
                 'error': 'Payment system not configured. Please contact support.'
@@ -634,7 +632,7 @@ def create_checkout_session():
         print(f"Creating checkout session for session_id: {session_id}")
 
         # Create Stripe checkout session
-        checkout_session = stripe.checkout.Session.create(
+        checkout_session = stripe_module.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[{
                 'price_data': {
@@ -678,12 +676,12 @@ def webhook():
         return jsonify({'success': True}), 200
     
     try:
-        event = stripe.Webhook.construct_event(
+        event = stripe_module.Webhook.construct_event(
             payload, sig_header, STRIPE_WEBHOOK_SECRET
         )
     except ValueError as e:
         return jsonify({'error': 'Invalid payload'}), 400
-    except stripe.error.SignatureVerificationError as e:
+    except stripe_module.error.SignatureVerificationError as e:
         return jsonify({'error': 'Invalid signature'}), 400
     
     # Handle checkout.session.completed event
