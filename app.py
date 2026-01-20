@@ -155,41 +155,38 @@ def load_cultural_avatars_for_type(natal_type, session_id=None):
         
         # Initialize rotation tracker for this type if not exists
         if natal_type not in ca_rotation_tracker:
-            ca_rotation_tracker[natal_type] = 0
+            ca_rotation_tracker[natal_type] = {
+                'position': random.randint(0, len(all_names) - 1),
+                'last_used': [],
+                'shuffle_buffer': []
+            }
+        
+        tracker = ca_rotation_tracker[natal_type]
         
         # Get recently used avatars from THIS session only
         recently_used_in_session = []
         if session_id and session_id in conversations:
             recently_used_in_session = conversations[session_id].get('last_avatars_mentioned', [])
         
-        # Get rotation position and select next 2-3 avatars in sequence
-        rotation_pos = ca_rotation_tracker[natal_type]
-        selected_avatars = []
+        # Create a pool of available avatars (exclude those used in this session)
+        available_avatars = [name for name in all_names if name not in recently_used_in_session]
         
-        # Start from rotation position and get next avatars
-        # Skip any that were used in THIS session (avoid repetition within conversation)
-        candidates_found = 0
-        max_candidates = random.randint(2, 3)  # Select 2-3 avatars
+        # If we've used too many from this type in this session, allow some reuse after buffer
+        if len(available_avatars) < 3:
+            # Include recently used but not in immediate history
+            buffer_avatars = [name for name in all_names if name not in recently_used_in_session[-3:]]
+            available_avatars = list(set(available_avatars + buffer_avatars))
         
-        for i in range(len(all_names)):
-            pos = (rotation_pos + i) % len(all_names)
-            avatar = all_names[pos]
-            
-            # Only add if not used in this session (unless user specifically asked about them)
-            if avatar not in recently_used_in_session:
-                selected_avatars.append(avatar)
-                candidates_found += 1
-                
-                if candidates_found >= max_candidates:
-                    # Update rotation to position after the last selected avatar
-                    ca_rotation_tracker[natal_type] = (pos + 1) % len(all_names)
-                    break
-        else:
-            # If we exhausted the loop without finding enough fresh avatars,
-            # just use what we found and update rotation
-            if selected_avatars:
-                last_pos = (rotation_pos + len(all_names) - 1) % len(all_names)
-                ca_rotation_tracker[natal_type] = (last_pos + 1) % len(all_names)
+        # Shuffle the available avatars for variety
+        random.shuffle(available_avatars)
+        
+        # Select 2-3 avatars based on what's available
+        num_to_select = min(random.randint(2, 3), len(available_avatars))
+        selected_avatars = available_avatars[:num_to_select]
+        
+        # Update tracker with selected avatars (for cross-session tracking)
+        tracker['last_used'] = selected_avatars
+        tracker['position'] = (all_names.index(selected_avatars[-1]) + 1) % len(all_names)
         
         # Fetch quotes and stories for each avatar
         avatar_details = []
