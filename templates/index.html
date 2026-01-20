@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Deep Oracle - Your Guide to Self-Discovery</title>
     <script src="https://js.stripe.com/v3/"></script>
+    
     <style>
         * {
             margin: 0;
@@ -240,6 +241,14 @@
             display: none !important;
         }
 
+        
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
         /* Paywall Modal */
         .paywall-modal {
             display: none;
@@ -304,15 +313,16 @@
             box-shadow: 0 10px 30px rgba(247, 151, 30, 0.4);
         }
 
+        .paywall-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
         .secure-payment {
             color: rgba(255, 255, 255, 0.7);
             font-size: 12px;
             margin-top: 20px;
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
         }
     </style>
 <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
@@ -409,12 +419,11 @@
                 <input type="text" id="messageInput" placeholder="Ask your question...">
                 <button id="sendMessage">Send</button>
             </div>
-        </div>
 
         <!-- Paywall Modal -->
         <div id="paywallModal" class="paywall-modal">
             <div class="paywall-content">
-                <h2>🌟 Continue Your Journey</h2>
+                <h2>✨ Continue Your Journey</h2>
                 <p>You've used your 5 free messages. Unlock unlimited access for just $2.95!</p>
                 <ul class="features">
                     <li>✓ Unlimited messaging</li>
@@ -616,14 +625,26 @@
                         })
                     });
                     
+                    // Check HTTP status code
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        const errorMsg = errorData.error || 'Unable to process payment. Please try again.';
+                        console.error('Payment failed:', errorMsg);
+                        alert(`Payment error: ${errorMsg}`);
+                        paywallBtn.disabled = false;
+                        paywallBtn.textContent = 'Continue - $2.95';
+                        return;
+                    }
+                    
                     const checkoutData = await response.json();
                     
-                    if (response.ok && checkoutData.url) {
+                    // Verify URL exists before redirecting
+                    if (checkoutData.url) {
                         // Redirect to Stripe Checkout
                         window.location.href = checkoutData.url;
                     } else {
-                        const errorMsg = checkoutData.error || 'Unable to process payment';
-                        console.error('Payment failed:', errorMsg);
+                        const errorMsg = checkoutData.error || 'Unable to process payment. Please try again.';
+                        console.error('Payment failed - no URL:', errorMsg);
                         alert(`Payment error: ${errorMsg}. Please try again.`);
                         paywallBtn.disabled = false;
                         paywallBtn.textContent = 'Continue - $2.95';
