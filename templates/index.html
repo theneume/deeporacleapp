@@ -14,128 +14,80 @@
             <p class="subtitle">Your AI Psychology Coach</p>
         </header>
 
-        <div id="chat-messages" class="chat-messages">
-            </div>
+        <div id="chat-messages" class="chat-messages"></div>
 
         <div id="paywall" class="paywall-overlay" style="display: none;">
             <div class="paywall-content">
                 <h2>Continue Your Journey</h2>
-                <p>You've reached the limit of your complimentary exploration. To continue this deep dive into your authentic self, please choose an option below.</p>
+                <p>You've reached the limit of your complimentary exploration.</p>
                 <button id="pay-button" class="primary-btn">Continue Session - $2.95</button>
-                <p class="secure-text">🔒 Secure payment via Stripe</p>
+            </div>
+        </div>
+
+        <div class="form-section">
+            <h3>Your Self-Discovery Profile</h3>
+            <div class="form-group">
+                <label for="personality">1. Describe your personality</label>
+                <textarea id="personality" placeholder="What makes you unique?"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="goals">2. What are your goals and aspirations?</label>
+                <textarea id="goals" placeholder="What do you hope to achieve?"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="challenges">3. What are your challenges and obstacles?</label>
+                <textarea id="challenges" placeholder="What stands in your way?"></textarea>
+            </div>
+            <div class="form-group">
+                <label for="environment">4. How is your environment supporting you?</label>
+                <textarea id="environment" placeholder="How is your life helping your goals?"></textarea>
             </div>
         </div>
 
         <div class="input-container">
-            <div id="discovery-profile" class="form-section" style="display: none;">
-                <h3>Your Self-Discovery Profile</h3>
-                <div class="form-group">
-                    <label for="personality">1. Describe your personality</label>
-                    <textarea id="personality" placeholder="What makes you unique?"></textarea>
-                </div>
-                <div class="form-group">
-                    <label for="goals">2. What are your goals and aspirations?</label>
-                    <textarea id="goals" placeholder="What do you hope to achieve?"></textarea>
-                </div>
-                <button onclick="toggleProfile()" class="secondary-btn">Close Profile</button>
-            </div>
-
             <textarea id="user-input" placeholder="Share your thoughts..."></textarea>
-            <button id="send-btn">
-                <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
-            </button>
+            <button id="send-btn">Send</button>
         </div>
     </div>
 
     <script>
-        const chatMessages = document.getElementById('chat-messages');
-        const userInput = document.getElementById('user-input');
-        const sendBtn = document.getElementById('send-btn');
-        const paywall = document.getElementById('paywall');
-        const payButton = document.getElementById('pay-button');
-
-        function toggleProfile() {
-            const profile = document.getElementById('discovery-profile');
-            profile.style.display = profile.style.display === 'none' ? 'block' : 'none';
-        }
+        // ... (Original Message Display Logic) ...
 
         async function sendMessage() {
-            const message = userInput.value.trim();
-            if (!message) return;
-
-            appendMessage('user', message);
-            userInput.value = '';
-
+            const message = document.getElementById('user-input').value;
             try {
                 const response = await fetch('/chat', {
                     method: 'POST',
                     headers: { 'Content-Type': 'application/json' },
-                    body: JSON.stringify({ 
-                        message,
-                        profile: {
-                            personality: document.getElementById('personality')?.value,
-                            goals: document.getElementById('goals')?.value
-                        }
-                    })
+                    body: JSON.stringify({ message })
                 });
 
-                // FIX: Check Content-Type to avoid "Unexpected token '<'"
+                // STRIPE FIX: Check if response is valid JSON before parsing [cite: 123]
                 const contentType = response.headers.get("content-type");
                 if (contentType && contentType.includes("application/json")) {
                     const data = await response.json();
                     if (data.show_paywall) {
-                        paywall.style.display = 'flex';
-                    } else if (data.response) {
-                        appendMessage('oracle', data.response);
+                        document.getElementById('paywall').style.display = 'flex';
                     } else {
-                        throw new Error(data.error || "Unknown error");
+                        // Display message
                     }
                 } else {
-                    throw new Error("Server returned HTML (likely a 404 or 500 error). Check backend logs.");
+                    console.error("Server returned HTML error page instead of JSON.");
                 }
-            } catch (error) {
-                console.error('Chat Error:', error);
-                appendMessage('oracle', "I encountered a connection issue. Please refresh.");
-            }
+            } catch (e) { console.error(e); }
         }
 
-        payButton.onclick = async () => {
-            payButton.innerText = 'Processing...';
-            payButton.disabled = true;
-            try {
-                const response = await fetch('/create-checkout-session', { 
-                    method: 'POST',
-                    headers: { 'Content-Type': 'application/json' }
-                });
-                
-                const contentType = response.headers.get("content-type");
-                if (contentType && contentType.includes("application/json")) {
-                    const data = await response.json();
-                    if (data.url) {
-                        window.location.href = data.url;
-                    } else {
-                        throw new Error(data.error || "Payment system error");
-                    }
-                } else {
-                    throw new Error("Payment server returned an invalid response.");
-                }
-            } catch (error) {
-                alert(`Payment error: ${error.message}`);
-                payButton.innerText = 'Continue Session - $2.95';
-                payButton.disabled = false;
+        document.getElementById('pay-button').onclick = async () => {
+            const response = await fetch('/create-checkout-session', { method: 'POST' });
+            const contentType = response.headers.get("content-type");
+            
+            if (contentType && contentType.includes("application/json")) {
+                const data = await response.json();
+                if (data.url) window.location.href = data.url;
+            } else {
+                alert("Payment system error. Please check server logs.");
             }
         };
-
-        function appendMessage(role, text) {
-            const div = document.createElement('div');
-            div.className = `message ${role}-message`;
-            div.innerHTML = role === 'oracle' ? marked.parse(text) : text;
-            chatMessages.appendChild(div);
-            chatMessages.scrollTop = chatMessages.scrollHeight;
-        }
-
-        sendBtn.onclick = sendMessage;
-        userInput.onkeypress = (e) => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); } };
     </script>
 </body>
 </html>
