@@ -622,14 +622,16 @@ def create_checkout_session():
             print(f"Invalid session: {session_id}")
             return jsonify({'error': 'Invalid session'}), 400
 
-        # DEBUG: Check stripe_module status
-        print(f"DEBUG: stripe_module type = {type(stripe_module)}")
-        print(f"DEBUG: stripe_module value = {stripe_module}")
-        print(f"DEBUG: stripe_module.api_key = {stripe_module.api_key}")
-        print(f"DEBUG: Has checkout attribute? = {hasattr(stripe_module, 'checkout')}")
+        # RE-IMPORT Stripe inside function to avoid any module conflicts
+        import stripe as stripe_local
         
-        # Check if Stripe is configured
-        if not stripe_module.api_key:
+        print(f"DEBUG: stripe_local type = {type(stripe_local)}")
+        print(f"DEBUG: stripe_local.api_key = {stripe_local.api_key}")
+        
+        # Set the API key inside this function
+        stripe_local.api_key = STRIPE_SECRET_KEY
+        
+        if not stripe_local.api_key:
             print("Stripe API key not configured")
             return jsonify({
                 'error': 'Payment system not configured. Please contact support.'
@@ -637,20 +639,8 @@ def create_checkout_session():
 
         print(f"Creating checkout session for session_id: {session_id}")
 
-        # DEBUG: Try to access checkout module
-        if hasattr(stripe_module, 'checkout'):
-            print(f"DEBUG: stripe_module.checkout = {stripe_module.checkout}")
-            if hasattr(stripe_module.checkout, 'Session'):
-                print(f"DEBUG: stripe_module.checkout.Session = {stripe_module.checkout.Session}")
-            else:
-                print(f"DEBUG: checkout has no Session attribute!")
-                print(f"DEBUG: checkout dir = {dir(stripe_module.checkout)}")
-        else:
-            print(f"DEBUG: stripe_module has no checkout attribute!")
-            print(f"DEBUG: stripe_module dir = {dir(stripe_module)}")
-
-        # Create Stripe checkout session
-        checkout_session = stripe_module.checkout.Session.create(
+        # Create Stripe checkout session using the local import
+        checkout_session = stripe_local.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[{
                 'price_data': {
