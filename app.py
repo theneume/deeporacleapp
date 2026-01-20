@@ -11,7 +11,7 @@ import json
 import os
 from datetime import datetime
 import random
-import stripe as stripe_module
+import stripe
 
 app = Flask(__name__)
 CORS(app)
@@ -22,12 +22,12 @@ STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
 FREE_MESSAGE_LIMIT = 5  # 5 free messages before paywall
 
 # Set Stripe API key
-stripe_module.api_key = STRIPE_SECRET_KEY
+stripe.api_key = STRIPE_SECRET_KEY
 
 # Validate Stripe configuration
-if stripe_module.api_key:
-    print(f"Stripe configured with API key: {stripe_module.api_key[:10]}...")
-    print(f"Full key length: {len(stripe_module.api_key)} characters")
+if stripe.api_key:
+    print(f"Stripe configured with API key: {stripe.api_key[:10]}...")
+    print(f"Full key length: {len(stripe.api_key)} characters")
 else:
     print("WARNING: Stripe API key not configured")
     print(f"Environment variable 'STRIPE_SECRET_KEY' value: {STRIPE_SECRET_KEY[:10] if STRIPE_SECRET_KEY else 'NOT SET'}")
@@ -35,161 +35,6 @@ else:
 # Store conversations in memory
 conversations = {}
 ca_rotation_tracker = {}  # Tracks rotation position for each type (global across sessions)
-
-# GRAVITOR ROTATION SYSTEM
-# Expanded gravitor lists for each type with rotation
-gravitor_pools = {
-    "SS": {
-        "primary": [
-            "depth", "meaning", "authenticity", "vision", "understanding", "contemplation", 
-            "thoughtful", "steady", "organic", "inner wisdom", "profound", "insightful",
-            "peaceful", "tranquil", "serene", "meditative", "mindful", "aware", "conscious"
-        ],
-        "secondary": [
-            "savor", "unfolds", "journey", "reflect", "immerse", "discover", "resonate", 
-            "sincere", "heartfelt", "true self", "essence", "spirit", "soul", "heart",
-            "wisdom", "truth", "genuine", "real", "gentle", "soft", "tender", "kind"
-        ],
-        "light_playful": [
-            "whimsical", "playful", "light-hearted", "amusing", "delightful", "charming",
-            "witty", "clever", "humorous", "fun", "enjoyable", "pleasant", "cheerful",
-            "bright", "sunny", "uplifting", "joyful", "happy", "merry"
-        ]
-    },
-    "SD": {
-        "primary": [
-            "support", "guidance", "growth", "development", "progress", "structure", 
-            "balance", "steady", "build", "foundation", "nurture", "cultivate", 
-            "strengthen", "establish", "reinforce"
-        ],
-        "secondary": [
-            "organize", "clarify", "encourage", "uplift", "empower", "guide", 
-            "assist", "help", "aid", "foster", "promote", "develop", "advance",
-            "consistent", "reliable", "dependable", "trustworthy"
-        ],
-        "light_playful": [
-            "encouraging", "cheerful", "uplifting", "supportive", "friendly", "warm",
-            "kind", "caring", "nurturing", "loving", "gentle", "tender", "helpful",
-            "useful", "practical", "straightforward", "simple", "easy"
-        ]
-    },
-    "DS": {
-        "primary": [
-            "discovery", "creativity", "innovation", "inspiration", "transformation", 
-            "fresh", "unique", "dynamic", "breakthrough", "illuminate", "spark", 
-            "ignite", "envision", "reimagine", "pioneer"
-        ],
-        "secondary": [
-            "uncover", "reveal", "catalyze", "originate", "invent", "design", 
-            "create", "generate", "produce", "develop", "advance", "progress",
-            "fascinating", "intriguing", "compelling", "captivating", "engaging"
-        ],
-        "light_playful": [
-            "playful", "fun", "exciting", "thrilling", "adventurous", "bold",
-            "daring", "brave", "courageous", "innovative", "clever", "smart",
-            "witty", "humorous", "amusing", "entertaining", "delightful"
-        ]
-    },
-    "DD": {
-        "primary": [
-            "clarity", "effectiveness", "results", "action", "mastery", "achievement", 
-            "success", "power", "direct", "decisive", "execute", "optimize", 
-            "maximize", "dominate", "command", "control"
-        ],
-        "secondary": [
-            "accomplish", "deliver", "complete", "finish", "conclude", "achieve",
-            "lead", "direct", "guide", "steer", "navigate", "conquer", "master",
-            "proven", "tested", "verified", "confirmed", "validated"
-        ],
-        "light_playful": [
-            "straightforward", "simple", "clear", "honest", "direct", "no-nonsense",
-            "practical", "useful", "effective", "efficient", "smart", "clever",
-            "sharp", "quick", "fast", "rapid", "speedy", "swift"
-        ]
-    }
-}
-
-def get_rotated_gravitors(natal_type, session_id=None, light_mode=False):
-    """
-    Get rotated gravitors for a type to prevent repetition.
-    
-    Args:
-        natal_type: User's Deepsyke type (SS, SD, DS, DD)
-        session_id: Session ID for tracking used gravitors
-        light_mode: Whether to use light/playful gravitors
-    
-    Returns:
-        String of gravitors to use in system prompt
-    """
-    type_gravitors = gravitor_pools.get(natal_type, gravitor_pools["SS"])
-    
-    # Get all available gravitors based on mode
-    if light_mode:
-        all_gravitors = type_gravitors["light_playful"]
-    else:
-        all_gravitors = type_gravitors["primary"] + type_gravitors["secondary"]
-    
-    # Track used gravitors per session
-    if session_id and session_id in conversations:
-        used_gravitors = conversations[session_id].get('used_gravitors', [])
-    else:
-        used_gravitors = []
-    
-    # Filter out recently used gravitors (last 8)
-    recently_used = used_gravitors[-8:] if len(used_gravitors) > 8 else used_gravitors
-    available_gravitors = [g for g in all_gravitors if g not in recently_used]
-    
-    # If no available gravitors (all used), reset and use all
-    if not available_gravitors:
-        available_gravitors = all_gravitors
-        if session_id and session_id in conversations:
-            conversations[session_id]['used_gravitors'] = []
-    
-    # Select 3-5 gravitors for this response
-    import random
-    num_gravitors = min(len(available_gravitors), random.randint(3, 5))
-    selected = random.sample(available_gravitors, num_gravitors)
-    
-    # Track used gravitors
-    if session_id and session_id in conversations:
-        if 'used_gravitors' not in conversations[session_id]:
-            conversations[session_id]['used_gravitors'] = []
-        conversations[session_id]['used_gravitors'].extend(selected)
-    
-    return ", ".join(selected)
-
-def detect_user_tone_request(user_message):
-    """
-    Detect if user is requesting a tone change.
-    
-    Args:
-        user_message: User's input message
-    
-    Returns:
-        String: 'light_playful', 'flexible_adaptive', 'deep_contemplative', or None
-    """
-    message_lower = user_message.lower()
-    
-    lighten_keywords = ["lighten up", "be funny", "joke", "not so serious", "boring", 
-                      "too serious", "loosen up", "relax", "not boring", "entertain me"]
-    flexible_keywords = ["flexible", "adapt", "change", "different", "new approach", 
-                       "repetitive", "same thing", "different way"]
-    deep_keywords = ["deeper", "more meaningful", "profound", "go deeper", 
-                    "serious", "contemplative"]
-    
-    for keyword in lighten_keywords:
-        if keyword in message_lower:
-            return "light_playful"
-    
-    for keyword in flexible_keywords:
-        if keyword in message_lower:
-            return "flexible_adaptive"
-    
-    for keyword in deep_keywords:
-        if keyword in message_lower:
-            return "deep_contemplative"
-    
-    return None
 
 # Redirect /api/* to proper routes
 @app.route('/api/health')
@@ -219,10 +64,6 @@ with open('cultural_avatars_rag.json', 'r') as f:
 with open('engagement_protocol.json', 'r') as f:
     ENGAGEMENT_PROTOCOL = json.load(f)
 
-# Load V4 engagement protocol with gravitor variety
-with open('engagement_protocol_v4.json', 'r') as f:
-    ENGAGEMENT_PROTOCOL_V4 = json.load(f)
-
 # Load business RAG (CUSTOMIZABLE per bot)
 with open('business_rag.json', 'r') as f:
     BUSINESS_RAG = json.load(f)
@@ -230,10 +71,6 @@ with open('business_rag.json', 'r') as f:
 # Load AI system prompt template (CUSTOMIZABLE per bot)
 with open('ai_system_prompt.txt', 'r') as f:
     AI_SYSTEM_PROMPT_TEMPLATE = f.read()
-
-# Load V4 AI system prompt with gravitor variety and flexibility
-with open('ai_system_prompt_v4.txt', 'r') as f:
-    AI_SYSTEM_PROMPT_TEMPLATE_V4 = f.read()
 
 # CONFIGURATION - Customize these for your bot
 GEMINI_API_KEY = "AIzaSyC1DgG1w7dm8fbZZ_LlAwhxpMSdNTJJl1Y"  # Replace with your key
@@ -271,26 +108,13 @@ def calculate_natal_type(birth_date_str, gender):
     """Calculate natal type from birth date using the correct 9-year cycle algorithm"""
     try:
         # Try multiple date formats
-        date_formats = [
-            '%Y-%m-%d',    # 1979-07-13
-            '%d-%m-%Y',    # 13-07-1979
-            '%m/%d/%Y',    # 07/13/1979
-            '%d/%m/%Y',    # 13/07/1979
-            '%d %b %Y',    # 13 Jul 1979
-            '%b %d %Y',    # Jul 13 1979
-            '%d %B %Y',    # 13 July 1979
-            '%B %d %Y',    # July 13 1979
-        ]
-        
-        birth_date = None
-        for fmt in date_formats:
+        for fmt in ['%Y-%m-%d', '%d-%m-%Y', '%m/%d/%Y', '%d/%m/%Y']:
             try:
                 birth_date = datetime.strptime(birth_date_str, fmt)
                 break
             except:
                 continue
-        
-        if not birth_date:
+        else:
             # Default to SS if parsing fails
             return {
                 "type": "SS",
@@ -384,20 +208,15 @@ def load_cultural_avatars_for_type(natal_type, session_id=None):
         # Add detailed information for each avatar
         for i, ca_info in enumerate(avatar_details, 1):
             avatar_text += f"{i}. {ca_info['name']}\n"
-            avatar_text += f"\n"
-            avatar_text += f"   ABSOLUTELY REQUIRED: You MUST include at least one specific, authentic quote from this person that relates to the conversation theme.\n"
-            avatar_text += f"   Use your extensive knowledge base to find the most relevant quote(s). DO NOT skip this step.\n"
-            avatar_text += f"\n"
-            avatar_text += f"   Also provide:\n"
-            avatar_text += f"   • Relevant biographical details or life experiences\n"
-            avatar_text += f"   • Their philosophical views, artistic work, or contributions\n"
-            avatar_text += f"   • Meaningful connections between their life and the user's situation\n"
-            avatar_text += f"\n"
-            avatar_text += f"   GUIDELINES:\n"
-            avatar_text += f"   • Use actual quotes or accurate paraphrases - DO NOT make up quotes\n"
-            avatar_text += f"   • Provide specific, concrete insights - DO NOT give generic descriptions\n"
-            avatar_text += f"   • The quote should be woven naturally into your response\n"
-            avatar_text += f"\n"
+            if ca_info['quotes']:
+                avatar_text += f"   Quotes/Insights:\n"
+                for quote in ca_info['quotes'][:2]:  # Top 2 quotes
+                    avatar_text += f"   - {quote}\n"
+            if ca_info['insights']:
+                avatar_text += f"   Key Insights:\n"
+                for insight in ca_info['insights'][:2]:  # Top 2 insights
+                    avatar_text += f"   • {insight['snippet'][:200]}...\n"
+            avatar_text += "\n"
         
         avatar_text += f"USAGE INSTRUCTIONS:\n"
         for instruction in CULTURAL_AVATARS['metadata']['usage_instructions']:
@@ -416,7 +235,7 @@ def load_cultural_avatars_for_type(natal_type, session_id=None):
         return "", []
 
 
-def build_system_prompt(profile, conversation_history, use_cultural_avatars=False, tone_mode='standard'):
+def build_system_prompt(profile, conversation_history, use_cultural_avatars=False):
     """Build the complete system prompt by integrating all components"""
     natal_type = profile['natal_type']
     gender = profile['gender']
@@ -426,12 +245,7 @@ def build_system_prompt(profile, conversation_history, use_cultural_avatars=Fals
     # Get type-specific data from Deepsyke core
     type_data = DEEPSYKE_CORE['affinity_zones'][natal_type]
     comm_style = DEEPSYKE_CORE['communication_styles'][natal_type]
-    engagement = ENGAGEMENT_PROTOCOL_V4[f'{natal_type}_engagement']
-    
-    # Get rotated gravitors based on tone mode
-    session_id = profile.get('session_id')
-    light_mode = (tone_mode == 'light_playful')
-    gravitors = get_rotated_gravitors(natal_type, session_id, light_mode)
+    engagement = ENGAGEMENT_PROTOCOL[f'{natal_type}_engagement']
     
     # Build conversation history text
     history_text = ""
@@ -448,9 +262,8 @@ def build_system_prompt(profile, conversation_history, use_cultural_avatars=Fals
             profile.get('session_id')
         )
     
-    # Replace template variables - use V4 template if tone_mode is set
-    template_to_use = AI_SYSTEM_PROMPT_TEMPLATE_V4 if tone_mode != 'standard' else AI_SYSTEM_PROMPT_TEMPLATE
-    system_prompt = template_to_use.format(
+    # Replace template variables
+    system_prompt = AI_SYSTEM_PROMPT_TEMPLATE.format(
         name=name,
         natal_type=natal_type,
         archetype=archetype,
@@ -490,7 +303,7 @@ def build_system_prompt(profile, conversation_history, use_cultural_avatars=Fals
     system_prompt += f"Characteristics: {type_data['characteristics']}\n"
     system_prompt += f"Motivation: {type_data['motivation']}\n"
     system_prompt += f"Zones: {type_data['zones']}\n"
-    system_prompt += f"Gravitors (rotated): {gravitors}\n"
+    system_prompt += f"Gravitors: {type_data['gravitors']}\n"
     
     # Add engagement protocol
     system_prompt += f"\n\n# ENGAGEMENT PROTOCOL FOR {natal_type}\n"
@@ -514,63 +327,12 @@ def build_system_prompt(profile, conversation_history, use_cultural_avatars=Fals
 
 
 def fetch_ca_quotes_stories(avatar_name, user_type):
-    """Return cultural avatar info with instructions for AI to use its knowledge base"""
+    """Return cultural avatar info - AI will use its knowledge base for quotes"""
     return {
         'name': avatar_name,
-        'quotes': [
-            f"Use your knowledge base to find relevant quotes from {avatar_name}",
-            f"Draw upon {avatar_name}'s life experiences and philosophical views"
-        ],
-        'insights': [
-            {'snippet': f"Use your extensive knowledge about {avatar_name} to provide meaningful insights"},
-            {'snippet': f"Connect {avatar_name}'s work or life to the user's current situation"}
-        ]
+        'quotes': [],
+        'insights': []
     }
-
-def detect_type_calculation_request(user_message):
-    """Detect if user is asking about a type calculation for someone else"""
-    type_keywords = [
-        'type is', 'what type', 'type of', 'calculate type', 'determine type',
-        'natal type', 'affinity zone', 'neurochemical type', 'psychology type'
-    ]
-    
-    message_lower = user_message.lower()
-    for keyword in type_keywords:
-        if keyword in message_lower:
-            return True
-    
-    return False
-
-def parse_type_calculation_request(user_message):
-    """Extract birth date and gender from a type calculation request"""
-    import re
-    from datetime import datetime
-    
-    # Try to extract date
-    date_patterns = [
-        r'born\s+(\d{1,2}[a-zA-Z]{3}\s+\d{4})',  # "born 13 Jul 1979"
-        r'born\s+(\d{4}-\d{2}-\d{2})',  # "born 1979-07-13"
-        r'born\s+(\d{1,2}/\d{1,2}/\d{4})',  # "born 07/13/1979"
-        r'(\d{1,2}[a-zA-Z]{3}\s+\d{4})',  # "13 Jul 1979"
-        r'(\d{4}-\d{2}-\d{2})',  # "1979-07-13"
-        r'(\d{1,2}/\d{1,2}/\d{4})',  # "07/13/1979"
-    ]
-    
-    birth_date = None
-    for pattern in date_patterns:
-        match = re.search(pattern, user_message, re.IGNORECASE)
-        if match:
-            birth_date = match.group(1)
-            break
-    
-    # Extract gender
-    gender = None
-    if re.search(r'\b(male|man|boy|he|him)\b', user_message, re.IGNORECASE):
-        gender = 'male'
-    elif re.search(r'\b(female|woman|girl|she|her)\b', user_message, re.IGNORECASE):
-        gender = 'female'
-    
-    return birth_date, gender
 
 def call_gemini_api(system_prompt, user_message):
     """Call Gemini API with the complete system prompt"""
@@ -584,7 +346,7 @@ def call_gemini_api(system_prompt, user_message):
                 "parts": [{"text": full_prompt}]
             }],
             "generationConfig": {
-                "temperature": 0.5,
+                "temperature": 0.3,
                 "maxOutputTokens": 800
             }
         }
@@ -611,109 +373,6 @@ def index():
 @app.route('/health')
 def health():
     return jsonify({"status": "healthy", "timestamp": datetime.now().isoformat()})
-
-
-@app.route('/api/create-checkout-session', methods=['POST'])
-def create_checkout_session():
-    """Create a Stripe checkout session for payment"""
-    try:
-        session_id = request.json.get('session_id')
-        if not session_id or session_id not in conversations:
-            print(f"Invalid session: {session_id}")
-            return jsonify({'error': 'Invalid session'}), 400
-
-        # RE-IMPORT Stripe inside function to avoid any module conflicts
-        import stripe as stripe_local
-        
-        print(f"DEBUG: stripe_local type = {type(stripe_local)}")
-        print(f"DEBUG: stripe_local.api_key = {stripe_local.api_key}")
-        
-        # Set the API key inside this function
-        stripe_local.api_key = STRIPE_SECRET_KEY
-        
-        if not stripe_local.api_key:
-            print("Stripe API key not configured")
-            return jsonify({
-                'error': 'Payment system not configured. Please contact support.'
-            }), 500
-
-        print(f"Creating checkout session for session_id: {session_id}")
-
-        # Create Stripe checkout session using the local import
-        checkout_session = stripe_local.checkout.Session.create(
-            payment_method_types=['card'],
-            line_items=[{
-                'price_data': {
-                    'currency': 'usd',
-                    'product_data': {
-                        'name': 'Oracle Psychology Session',
-                        'description': 'Continue your self-discovery journey',
-                    },
-                    'unit_amount': 295,  # $2.95 in cents
-                },
-                'quantity': 1,
-            }],
-            mode='payment',
-            success_url=request.url_root + 'payment-success?session_id=' + session_id,
-            cancel_url=request.url_root + '?session_id=' + session_id,
-            metadata={
-                'session_id': session_id
-            }
-        )
-
-        print(f"Checkout session created: {checkout_session.url}")
-        return jsonify({'url': checkout_session.url})
-    except Exception as e:
-        print(f"Stripe error: {e}")
-        import traceback
-        traceback.print_exc()
-        return jsonify({
-            'error': f'Payment processing error: {str(e)}'
-        }), 500
-
-
-@app.route('/webhook', methods=['POST'])
-def webhook():
-    """Handle Stripe webhook events"""
-    payload = request.get_data(as_text=True)
-    sig_header = request.headers.get('Stripe-Signature')
-    
-    if not STRIPE_WEBHOOK_SECRET:
-        # If webhook secret not set, still allow payment to work (for testing)
-        print("Warning: STRIPE_WEBHOOK_SECRET not set")
-        return jsonify({'success': True}), 200
-    
-    try:
-        event = stripe_module.Webhook.construct_event(
-            payload, sig_header, STRIPE_WEBHOOK_SECRET
-        )
-    except ValueError as e:
-        return jsonify({'error': 'Invalid payload'}), 400
-    except stripe_module.error.SignatureVerificationError as e:
-        return jsonify({'error': 'Invalid signature'}), 400
-    
-    # Handle checkout.session.completed event
-    if event['type'] == 'checkout.session.completed':
-        session_obj = event['data']['object']
-        session_id = session_obj.get('metadata', {}).get('session_id')
-        
-        if session_id and session_id in conversations:
-            conversations[session_id]['paid'] = True
-            conversations[session_id]['payment_id'] = session_obj.payment_intent
-            print(f"Payment received for session {session_id}")
-    
-    return jsonify({'success': True}), 200
-
-
-@app.route('/payment-success')
-def payment_success():
-    """Handle successful payment"""
-    session_id = request.args.get('session_id')
-    if session_id and session_id in conversations:
-        conversations[session_id]['paid'] = True
-        conversations[session_id]['payment_id'] = 'paid'
-    
-    return render_template('index.html', payment_success=True)
 
 
 @app.route('/init-profile', methods=['POST'])
@@ -743,40 +402,15 @@ def init_profile():
         # Get type-specific greeting
         comm_style = DEEPSYKE_CORE['communication_styles'][natal_type]
         
-        # Create type-specific greetings with archetype and neurochemical baseline
-        archetype = DEEPSYKE_CORE['type_calculator']['rules']['gender_archetypes'][natal_type][gender]
-        
-        # NO personalization in greeting - keep it clean
-        # Profile data will be used contextually in chat, not in greeting
-        personalization = ""
-        
-        # Create multiple greeting variations for each type to avoid repetition
-        import random
-        
-        greeting_variations = {
-            "SS": [
-                f"Welcome, {name}. Your predominant psychology archetype is the {archetype} and your neurochemical baseline is dominant serotonin.{personalization if personalization else ''} This means you're like the thoughtful philosopher who prefers deep conversations over small talk, the sort of person who finds meaning in sunsets and understands that life's best answers often come from sitting quietly rather than rushing around. You have a natural gift for depth and authentic reflection. I'm here to help you explore who you truly are. What brings you to this moment of self-reflection?",
-                f"Greetings, {name}. You embody the {archetype} archetype with a neurochemical baseline of dominant serotonin.{personalization if personalization else ''} You're someone who naturally gravitates toward depth and meaning, much like a scholar who finds wisdom in ancient texts. Your authentic self is most comfortable in quiet contemplation, where life's profound truths reveal themselves. I'm here to support your journey of deep discovery. What aspect of your inner self feels most alive to you right now?",
-                f"Welcome, {name}. As a {archetype} with dominant serotonin in your neurochemical profile,{personalization if personalization else ''} you have a remarkable capacity for profound insight and authentic connection. You're like a wise observer who sees patterns others miss, finding significance in moments that others rush past. Your depth is a gift, not something to overcome. Let's explore the richness within you. What would you like to understand better about yourself?"
-            ],
-            "SD": [
-                f"Welcome, {name}. Your predominant psychology archetype is the {archetype} and your neurochemical baseline is high serotonin, moderate dopamine.{personalization if personalization else ''} This means you're like the thoughtful strategist, an architect who plans carefully but also knows when to enjoy the view. You have a natural ability to create structure, build step-by-step progress, and find the perfect balance between working hard and actually having a life. I'm here to support your journey of self-discovery. What would you like to understand about yourself?",
-                f"Greetings, {name}. You're a {archetype} archetype with a neurochemical profile of high serotonin, moderate dopamine.{personalization if personalization else ''} Think of yourself as a master builder who understands that great structures need both solid foundations and beautiful designs. Your strength lies in creating order while remaining flexible enough to adapt when needed. I'm here to help you build the life you envision. What structure would you like to create or improve in your life?",
-                f"Welcome, {name}. With your {archetype} archetype and balanced serotonin-dopamine neurochemistry,{personalization if personalization else ''} you possess a rare ability to plan strategically while staying connected to what matters. You're like a seasoned captain who knows exactly where the ship is heading but also remembers to enjoy the voyage. Your balanced approach is your superpower. Let's explore how to use it more fully. What area of your life feels ready for thoughtful development?"
-            ],
-            "DS": [
-                f"Welcome, {name}. Your predominant psychology archetype is the {archetype} and your neurochemical baseline is high dopamine, moderate serotonin.{personalization if personalization else ''} This means you're like the slightly scattered but brilliant innovator who has ten ideas before breakfast and somehow makes half of them work. You have a natural drive for adventure, dynamic expression, and the ability to charm people while simultaneously forgetting where you put your keys. I sense you're ready for some fascinating insights about yourself. What aspect of your inner world intrigues you most?",
-                f"Greetings, {name}. You embody the {archetype} archetype with high dopamine, moderate serotonin as your neurochemical foundation.{personalization if personalization else ''} You're like a brilliant composer who hears symphonies in everyday moments, always creating something new even if the sheet music gets a bit disorganized sometimes. Your dynamic energy is contagious and your ability to see fresh possibilities is remarkable. I'm here to help you harness that creative fire. What adventure is calling to you right now?",
-                f"Welcome, {name}. As a {archetype} with a neurochemical baseline of high dopamine, moderate serotonin,{personalization if personalization else ''} you have an extraordinary capacity for dynamic expression and creative breakthrough. You're someone who naturally generates energy and ideas, sometimes more than you can contain in one sitting - and that's actually part of your brilliance. Your liveliness is a gift. Let's explore how to channel it most effectively. What creative endeavor or new direction excites you?"
-            ],
-            "DD": [
-                f"Welcome, {name}. Your predominant psychology archetype is the {archetype} and your neurochemical baseline is dopamine dominant.{personalization if personalization else ''} This means you're like the determined force of nature who cuts through confusion like a hot knife through butter, the sort of person who decides to climb a mountain at 4am and is already at the summit by breakfast. You have a natural ability to take decisive action and get results, though occasionally you might accidentally bulldoze through details that need more attention. Let's get clear on who you are and what drives you. What do you want to understand about yourself?",
-                f"Greetings, {name}. You're a {archetype} archetype with a dopamine-dominant neurochemical profile.{personalization if personalization else ''} You possess a powerful drive and the ability to cut through complexity with decisive clarity. Think of yourself as a natural leader who doesn't just see obstacles but sees paths through them, sometimes so clearly that others wonder why they didn't see it too. Your decisiveness is your strength. Let's explore how to direct it most effectively. What goal or challenge are you ready to tackle head-on?",
-                f"Welcome, {name}. With your {archetype} archetype and dopamine-dominant neurochemistry,{personalization if personalization else ''} you have an exceptional capacity for focused action and achieving results. You're someone who naturally moves toward objectives with remarkable speed and clarity, sometimes surprising even yourself with what you can accomplish when you're fully committed. Your ability to execute is extraordinary. Let's explore what you're ready to create or achieve. What matters most to you right now?"
-            ]
+        # Create type-specific greetings
+        greetings = {
+            "SS": f"Welcome, {name}. I'm here to help you explore the depths of who you truly are. What brings you to this moment of self-reflection?",
+            "SD": f"Welcome, {name}. I'm here to support your journey of self-discovery. What would you like to understand about yourself?",
+            "DS": f"Welcome, {name}. I sense you're ready for some fascinating insights about yourself. What aspect of your inner world intrigues you most?",
+            "DD": f"Welcome, {name}. Let's get clear on who you are and what drives you. What do you want to understand about yourself?"
         }
         
-        greeting = random.choice(greeting_variations[natal_type])
+        greeting = greetings[natal_type]
         
         # Store session with enhanced profile data
         conversations[session_id] = {
@@ -793,10 +427,8 @@ def init_profile():
             'last_avatars_mentioned': [],
             'message_count': 0,
             'last_ca_message': 0,
-            'used_gravitors': [],  # Track gravitors to prevent repetition
-            'tone_mode': 'standard',  # Track current tone mode
             'paid': False,  # Track if user has paid
-            'payment_id': None  # Stripe payment ID
+            'payment_id': None
         }
         
         return jsonify({
@@ -828,60 +460,25 @@ def chat():
         message_count = session.get('message_count', 0)
         if not session.get('paid', False) and message_count >= FREE_MESSAGE_LIMIT:
             return jsonify({
-                'success': False,
                 'error': 'PAYWALL_REACHED',
-                'message_count': message_count,
                 'free_limit': FREE_MESSAGE_LIMIT,
-                'price': '$2.95',
-                'requires_payment': True
-            }), 402  # 402 Payment Required
-        
-        # Check if user is asking for a type calculation
-        if detect_type_calculation_request(user_message):
-            birth_date, gender = parse_type_calculation_request(user_message)
-            if birth_date and gender:
-                # Calculate the type
-                try:
-                    natal_type = calculate_natal_type(birth_date, gender)
-                    archetype = DEEPSYKE_CORE['type_calculator']['rules']['gender_archetypes'][natal_type][gender]
-                    
-                    # Ask for confirmation
-                    confirmation_response = f"I want to make sure I understand correctly - your friend is {gender} and was born on {birth_date}, is that right? Once you confirm, I can tell you their type and archetype."
-                    session['history'].append({'role': 'user', 'content': user_message})
-                    session['history'].append({'role': 'assistant', 'content': confirmation_response})
-                    return jsonify({'success': True, 'response': confirmation_response})
-                except Exception as e:
-                    print(f"Type calculation error: {e}")
-                    # If calculation fails, let AI handle it normally
-                    pass
-            else:
-                # Couldn't parse date/gender, let AI handle it
-                pass
+                'message': f'You\'ve used your {FREE_MESSAGE_LIMIT} free messages. Please upgrade to continue.'
+            }), 402
         
         # Increment message count
         session['message_count'] += 1
         current_message = session['message_count']
         
-        # Detect user's tone request
-        tone_request = detect_user_tone_request(user_message)
-        if tone_request:
-            session['tone_mode'] = tone_request
-        tone_mode = session.get('tone_mode', 'standard')
-        
         # Determine if we should include cultural avatars this message
-        # Rule: CAs can only appear if at least 2 messages have passed since last CA
+        # Pattern: Messages 4, 7, 11, 14, 18, 21, ... (alternating 3 and 4)
         use_cultural_avatars = False
         if ENGAGEMENT_PROTOCOL['cultural_avatar_protocol']['enabled']:
-            last_ca = session.get('last_ca_message', 0)
-            messages_since_ca = current_message - last_ca
+            # Define the message numbers where CAs should appear
+            ca_messages = {4, 7, 11, 14, 18, 21, 25, 28, 32, 35, 40, 43, 47, 50}
             
-            # Only allow CA if 2+ messages have passed since last one
-            if current_message >= 4 and messages_since_ca >= 3:
+            if current_message in ca_messages:
                 use_cultural_avatars = True
                 session['last_ca_message'] = current_message
-                print(f"CA ENABLED: Message {current_message}, {messages_since_ca} messages since last CA")
-            else:
-                print(f"CA DISABLED: Message {current_message}, {messages_since_ca} messages since last CA (need 3+)")
         
         # Add user message to history
         session['history'].append({'role': 'user', 'content': user_message})
@@ -890,8 +487,7 @@ def chat():
         system_prompt, selected_avatars = build_system_prompt(
             profile, 
             session['history'],
-            use_cultural_avatars,
-            tone_mode
+            use_cultural_avatars
         )
         
         # Get AI response
@@ -910,8 +506,113 @@ def chat():
         return jsonify({'success': False, 'error': str(e)}), 500
 
 
+@app.route('/api/create-checkout-session', methods=['POST'])
+def create_checkout_session():
+    """Create a Stripe checkout session for payment"""
+    try:
+        session_id = request.json.get('session_id')
+        
+        if not session_id:
+            return jsonify({'error': 'Session ID required'}), 400
+        
+        # Validate Stripe configuration
+        if not stripe.api_key:
+            print("Stripe API key not configured")
+            return jsonify({
+                'error': 'Payment system not configured. Please contact support.'
+            }), 500
+        
+        print(f"Creating checkout session for session_id: {session_id}")
+
+        # Create Stripe checkout session (Stripe 8.0.0+ has proper checkout module)
+        checkout_session = stripe.checkout.Session.create(
+            payment_method_types=['card'],
+            line_items=[{
+                'price_data': {
+                    'currency': 'usd',
+                    'product_data': {
+                        'name': 'Oracle Psychology Session',
+                        'description': 'Continue your self-discovery journey',
+                    },
+                    'unit_amount': 295,  # $2.95 in cents
+                },
+                'quantity': 1,
+            }],
+            mode='payment',
+            success_url=request.url_root + 'payment-success?session_id=' + session_id,
+            cancel_url=request.url_root + '?session_id=' + session_id,
+            metadata={
+                'session_id': session_id
+            }
+        )
+
+        print(f"Checkout session created: {checkout_session.url}")
+        return jsonify({'url': checkout_session.url})
+        
+    except stripe.error.StripeError as e:
+        # Specific Stripe error handling
+        print(f"Stripe error: {e}")
+        print(f"Error type: {type(e).__name__}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({
+            'error': f'Payment processing error: {str(e)}'
+        }), 500
+    except Exception as e:
+        print(f"Unexpected error: {e}")
+        import traceback
+        traceback.print_exc()
+        return jsonify({
+            'error': f'Unexpected error: {str(e)}'
+        }), 500
+
+
+@app.route('/webhook', methods=['POST'])
+def webhook():
+    """Handle Stripe webhook events"""
+    payload = request.get_data(as_text=True)
+    sig_header = request.headers.get('Stripe-Signature')
+    
+    if not STRIPE_WEBHOOK_SECRET:
+        # If webhook secret not set, still allow payment to work (for testing)
+        print("Warning: STRIPE_WEBHOOK_SECRET not set")
+        return jsonify({'success': True}), 200
+    
+    try:
+        event = stripe.Webhook.construct_event(
+            payload, sig_header, STRIPE_WEBHOOK_SECRET
+        )
+    except ValueError as e:
+        return jsonify({'error': 'Invalid payload'}), 400
+    except stripe.error.SignatureVerificationError as e:
+        return jsonify({'error': 'Invalid signature'}), 400
+    
+    # Handle checkout.session.completed event
+    if event['type'] == 'checkout.session.completed':
+        session_obj = event['data']['object']
+        session_id = session_obj.get('metadata', {}).get('session_id')
+        
+        if session_id and session_id in conversations:
+            conversations[session_id]['paid'] = True
+            conversations[session_id]['payment_id'] = session_obj.payment_intent
+            print(f"Payment received for session {session_id}")
+    
+    return jsonify({'success': True}), 200
+
+
+@app.route('/payment-success')
+def payment_success():
+    """Handle successful payment"""
+    session_id = request.args.get('session_id')
+    if session_id and session_id in conversations:
+        conversations[session_id]['paid'] = True
+        conversations[session_id]['payment_id'] = 'paid'
+    
+    return render_template('index.html', payment_success=True)
+
+
 if __name__ == '__main__':
-    port = int(os.environ.get('PORT', 9033))
+    port = int(os.environ.get('PORT', 9011))
     print(f"Starting Oracle Psychology Coach on port {port}")
     print(f"Loaded {CULTURAL_AVATARS['metadata']['total_count']} cultural avatars")
     print(f"Business: {BUSINESS_RAG['metadata']['business_name']}")
