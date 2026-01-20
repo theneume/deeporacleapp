@@ -1,128 +1,91 @@
-#!/usr/bin/env python3
-from flask import Flask, request, jsonify, render_template
-from flask_cors import CORS
-import requests
-import json
 import os
-from datetime import datetime
-import random
-import stripe  # Clean import, no aliases to avoid confusion
+import json
+import stripe
+from flask import Flask, render_template, request, jsonify, session
+import google.generativeai as genai
 
 app = Flask(__name__)
-CORS(app)
+app.secret_key = os.environ.get("FLASK_SECRET_KEY", "oracle_v3_secure_key")
 
-# --- CONFIGURATION ---
-STRIPE_SECRET_KEY = os.environ.get('STRIPE_SECRET_KEY', '')
-STRIPE_WEBHOOK_SECRET = os.environ.get('STRIPE_WEBHOOK_SECRET', '')
-FREE_MESSAGE_LIMIT = 5
-GEMINI_API_KEY = "AIzaSyC1DgG1w7dm8fbZZ_LlAwhxpMSdNTJJl1Y"
+# Stripe Config
+stripe.api_key = os.environ.get("STRIPE_SECRET_KEY")
+STRIPE_WEBHOOK_SECRET = os.environ.get("STRIPE_WEBHOOK_SECRET")
 
-# Initialize Stripe once at the top level
-stripe.api_key = STRIPE_SECRET_KEY
+# Gemini Config
+genai.configure(api_key=os.environ.get("GEMINI_API_KEY"))
+model = genai.GenerativeModel('gemini-1.5-pro')
 
-# Storage
-conversations = {}
-ca_rotation_tracker = {}
+# Load Protocols
+with open('engagement_protocol_v4.json', 'r') as f:
+    PROTCOLS = json.load(f)
 
-# --- LOAD RAG DATA (Wrapped in try/except for safety) ---
-def load_json(filename):
+FREE_LIMIT = 5
+
+@app.route('/')
+def index():
+    session.clear() # Fresh start for session tracking
+    session['message_count'] = 0
+    session['paid'] = False
+    session['chat_history'] = []
+    return render_template('index.html')
+
+@app.route('/chat', methods=['POST'])
+def chat():
+    # 1. Paywall Check
+    if session.get('message_count', 0) >= FREE_LIMIT and not session.get('paid', False):
+        return jsonify({'show_paywall': True})
+
+    data = request.json
+    user_msg = data.get('message')
+    
     try:
-        with open(filename, 'r') as f:
-            return json.load(f)
-    except Exception as e:
-        print(f"Error loading {filename}: {e}")
-        return {}
-
-DEEPSYKE_CORE = load_json('deepsyke_core_rag.json')
-CULTURAL_AVATARS = load_json('cultural_avatars_rag.json')
-ENGAGEMENT_PROTOCOL = load_json('engagement_protocol.json')
-ENGAGEMENT_PROTOCOL_V4 = load_json('engagement_protocol_v4.json')
-BUSINESS_RAG = load_json('business_rag.json')
-
-with open('ai_system_prompt.txt', 'r') as f:
-    AI_SYSTEM_PROMPT_TEMPLATE = f.read()
-with open('ai_system_prompt_v4.txt', 'r') as f:
-    AI_SYSTEM_PROMPT_TEMPLATE_V4 = f.read()
-
-# --- STRIPE PAYWALL ENDPOINT ---
-@app.route('/api/create-checkout-session', methods=['POST'])
-def create_checkout_session():
-    try:
-        data = request.get_json()
-        session_id = data.get('session_id')
+        # 2. System Prompt Logic (Rules 1-8)
+        # In a full implementation, you'd insert your ai_system_prompt_v4.txt content here
+        chat_session = model.start_chat(history=session.get('chat_history', []))
+        response = chat_session.send_message(user_msg)
         
-        if not session_id or session_id not in conversations:
-            return jsonify({'error': 'Invalid session'}), 400
+        # 3. Session Management
+        session['message_count'] = session.get('message_count', 0) + 1
+        history = session.get('chat_history', [])
+        history.append({"role": "user", "parts": [user_msg]})
+        history.append({"role": "model", "parts": [response.text]})
+        session['chat_history'] = history
+        session.modified = True
+        
+        return jsonify({'response': response.text})
+    except Exception as e:
+        print(f"Backend Error: {str(e)}")
+        return jsonify({'error': "The Oracle is momentarily offline. Please try again."}), 500
 
-        if not stripe.api_key:
-            return jsonify({'error': 'Stripe key not found on server'}), 500
+@app.route('/create-checkout-session', methods=['POST'])
+def create_checkout_session():
+    # Validation to prevent HTML error pages
+    if not stripe.api_key:
+        return jsonify({'error': 'Stripe API Key is missing. Check environment variables.'}), 500
 
-        # Build the session using the global 'stripe' object
+    try:
         checkout_session = stripe.checkout.Session.create(
             payment_method_types=['card'],
             line_items=[{
                 'price_data': {
                     'currency': 'usd',
-                    'product_data': {
-                        'name': 'Oracle Psychology - Unlimited Session',
-                        'description': 'Continue your deep self-discovery journey',
-                    },
-                    'unit_amount': 295,  # $2.95
+                    'product_data': {'name': 'Oracle Deep Exploration Session'},
+                    'unit_amount': 295,
                 },
                 'quantity': 1,
             }],
             mode='payment',
-            # Ensure these URLs match your Render domain
-            success_url=f"https://deeporacleapp.onrender.com/payment-success?session_id={session_id}",
-            cancel_url=f"https://deeporacleapp.onrender.com/?session_id={session_id}",
-            metadata={'session_id': session_id}
+            success_url=request.host_url + 'payment-success',
+            cancel_url=request.host_url,
         )
-
         return jsonify({'url': checkout_session.url})
     except Exception as e:
-        print(f"STRIPE ERROR: {str(e)}")
         return jsonify({'error': str(e)}), 500
-
-# --- CHAT ENDPOINT WITH PAYWALL LOGIC ---
-@app.route('/api/chat', methods=['POST'])
-def chat():
-    data = request.get_json()
-    session_id = data.get('session_id')
-    user_message = data.get('message', '')
-
-    if not session_id or session_id not in conversations:
-        return jsonify({'error': 'Session not initialized'}), 400
-
-    conv = conversations[session_id]
-    
-    # PAYWALL LOGIC
-    if not conv.get('paid', False):
-        message_count = len([m for m in conv.get('history', []) if m['role'] == 'user'])
-        if message_count >= FREE_MESSAGE_LIMIT:
-            return jsonify({
-                'error': 'Payment required',
-                'message': 'You have reached the limit of the free Oracle session.',
-                'paywall': True
-            }), 402
-
-    # If paid or under limit, proceed to Gemini
-    # (Insert your build_system_prompt and call_gemini_api logic here)
-    # response_text = call_gemini_api(system_prompt, user_message)
-    
-    return jsonify({'response': "AI Response placeholder - logic is now safe."})
-
-# --- REMAINING ROUTES ---
-@app.route('/')
-def index():
-    return render_template('index.html')
 
 @app.route('/payment-success')
 def payment_success():
-    session_id = request.args.get('session_id')
-    if session_id and session_id in conversations:
-        conversations[session_id]['paid'] = True
-    return render_template('index.html', payment_success=True)
+    session['paid'] = True
+    return render_template('index.html', payment_received=True)
 
 if __name__ == '__main__':
-    port = int(os.environ.get("PORT", 10000))
-    app.run(host='0.0.0.0', port=port)
+    app.run(debug=True)
