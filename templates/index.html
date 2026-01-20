@@ -3,9 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Deep Oracle - Your Guide to Self-Discovery</title>
-    <script src="https://js.stripe.com/v3/"></script>
-    
+    <title>Deep Oracle - Your Psychology Coach for Self-Discovery</title>
     <style>
         * {
             margin: 0;
@@ -14,239 +12,368 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-            color: #ffffff;
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a0f2e 50%, #0a0514 100%);
             min-height: 100vh;
-            line-height: 1.6;
+            color: #f5f5f5;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Elegant background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(75, 0, 130, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
         }
 
         .header {
             text-align: center;
-            margin-bottom: 3rem;
-            padding: 2rem;
-            background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
+            padding: 60px 20px 40px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
         .header h1 {
-            font-size: 2.5rem;
-            margin-bottom: 0.5rem;
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
+            font-size: 3em;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #daa520 0%, #ffd700 50%, #daa520 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-shadow: 0 0 30px rgba(218, 165, 32, 0.3);
         }
 
-        .subtitle {
-            font-size: 1.2rem;
-            color: #a0a0a0;
-            margin-bottom: 1rem;
+        .header .subtitle {
+            color: #d4af37;
+            font-size: 1.3em;
+            font-style: italic;
+            margin-bottom: 10px;
+            font-weight: 300;
         }
 
         .header p {
-            color: #b0b0b0;
+            color: #b8b8b8;
+            font-size: 1.05em;
+            line-height: 1.6;
             max-width: 600px;
             margin: 0 auto;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        .profile-form, .chat-container {
+        .profile-form {
             background: rgba(255, 255, 255, 0.05);
-            border-radius: 15px;
-            padding: 2rem;
+            padding: 40px;
+            border-radius: 20px;
+            margin-bottom: 40px;
+            backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 2rem;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        .profile-form h2, .chat-container h2 {
-            margin-bottom: 1.5rem;
-            color: #667eea;
+        .profile-form h2 {
+            color: #daa520;
+            margin-bottom: 30px;
+            font-weight: 300;
+            font-size: 1.8em;
+            text-align: center;
+            letter-spacing: 2px;
         }
 
         .form-section {
-            margin-bottom: 2rem;
+            margin-bottom: 35px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .form-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
 
         .form-section h3 {
-            color: #764ba2;
-            margin-bottom: 1rem;
-            font-size: 1.1rem;
+            color: #d4af37;
+            margin-bottom: 20px;
+            font-weight: 300;
+            font-size: 1.3em;
+            letter-spacing: 1px;
+        }
+
+        .form-section p {
+            color: #b8b8b8;
+            font-size: 0.95em;
+            margin-bottom: 20px;
+            font-style: italic;
         }
 
         .form-row {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
         }
 
         .form-group {
-            margin-bottom: 1rem;
+            margin-bottom: 20px;
         }
 
         .form-group label {
             display: block;
-            margin-bottom: 0.5rem;
-            color: #a0a0a0;
-            font-weight: 500;
+            margin-bottom: 8px;
+            color: #d4af37;
+            font-weight: 400;
+            font-size: 0.95em;
+            letter-spacing: 1px;
         }
 
         .form-group input,
         .form-group select,
         .form-group textarea {
             width: 100%;
-            padding: 0.75rem;
+            padding: 14px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            color: #ffffff;
-            font-size: 1rem;
+            color: #f5f5f5;
+            font-size: 15px;
             transition: all 0.3s ease;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+            line-height: 1.5;
         }
 
         .form-group input:focus,
         .form-group select:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #667eea;
-            box-shadow: 0 0 10px rgba(102, 126, 234, 0.3);
+            border-color: #daa520;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(218, 165, 32, 0.2);
         }
 
-        .form-group input::placeholder {
-            color: rgba(255, 255, 255, 0.3);
+        .form-group select option {
+            background: #1a0f2e;
+            color: #f5f5f5;
         }
 
-        button {
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 1rem 2rem;
+        .optional-label {
+            font-size: 0.85em;
+            color: #b8b8b8;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #daa520 0%, #d4af37 100%);
+            color: #1a0f2e;
             border: none;
-            border-radius: 8px;
-            font-size: 1.1rem;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 20px rgba(218, 165, 32, 0.3);
         }
 
-        button:hover {
+        .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(102, 126, 234, 0.4);
+            box-shadow: 0 6px 30px rgba(218, 165, 32, 0.5);
+            background: linear-gradient(135deg, #ffd700 0%, #daa520 100%);
         }
 
-        button:active {
-            transform: translateY(0);
-        }
-
-        button:disabled {
+        .submit-btn:disabled {
             opacity: 0.5;
             cursor: not-allowed;
             transform: none;
         }
 
-        .chat-messages {
-            height: 500px;
-            overflow-y: auto;
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 10px;
-            padding: 1.5rem;
-            margin-bottom: 1.5rem;
+        .chat-container {
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            display: none;
+            backdrop-filter: blur(20px);
             border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-messages {
+            padding: 30px;
+            max-height: 550px;
+            overflow-y: auto;
+            min-height: 350px;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(218, 165, 32, 0.3);
+            border-radius: 10px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: rgba(218, 165, 32, 0.5);
         }
 
         .message {
-            margin-bottom: 1.5rem;
-            padding: 1rem;
-            border-radius: 10px;
-            animation: fadeIn 0.3s ease;
-        }
-
-        .message.user {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            margin-left: 2rem;
-        }
-
-        .message.assistant {
-            background: rgba(255, 255, 255, 0.1);
-            margin-right: 2rem;
+            margin-bottom: 20px;
+            padding: 20px;
+            border-radius: 15px;
+            line-height: 1.7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            animation: fadeIn 0.5s ease;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
-        .input-area {
-            display: flex;
-            gap: 1rem;
+        .message.user {
+            background: linear-gradient(135deg, rgba(218, 165, 32, 0.2) 0%, rgba(212, 175, 55, 0.15) 100%);
+            margin-left: 0;
+            margin-right: 10%;
+            border-left: 3px solid #daa520;
         }
 
-        .input-area input {
-            flex: 1;
-            padding: 1rem;
+        .message.assistant {
             background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 8px;
-            color: #ffffff;
-            font-size: 1rem;
+            margin-left: 10%;
+            margin-right: 0;
+            border-left: 3px solid rgba(138, 43, 226, 0.5);
         }
 
-        .input-area input:focus {
+        .chat-input-container {
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            gap: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .chat-input {
+            flex: 1;
+            padding: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #f5f5f5;
+            font-size: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+
+        .chat-input:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: #daa520;
+            box-shadow: 0 0 20px rgba(218, 165, 32, 0.2);
         }
 
-        .error-message {
-            background: rgba(255, 0, 0, 0.2);
-            border: 1px solid rgba(255, 0, 0, 0.5);
-            color: #ff6b6b;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 1rem;
-            display: none;
+        .send-btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #daa520 0%, #d4af37 100%);
+            color: #1a0f2e;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .send-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(218, 165, 32, 0.4);
+        }
+
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
         }
 
         .typing-indicator {
             display: none;
+            padding: 20px;
+            color: #d4af37;
+            font-style: italic;
             text-align: center;
-            color: #a0a0a0;
-            padding: 1rem;
         }
 
-        .typing-indicator span {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: #667eea;
-            border-radius: 50%;
-            margin: 0 2px;
-            animation: bounce 1.4s infinite ease-in-out;
+        .error-message {
+            background: rgba(220, 53, 69, 0.2);
+            border: 1px solid rgba(220, 53, 69, 0.5);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            color: #ff6b6b;
+            display: none;
         }
 
-        .typing-indicator span:nth-child(0) { animation-delay: -0.32s; }
-        .typing-indicator span:nth-child(1) { animation-delay: -0.16s; }
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .header .subtitle {
+                font-size: 1.1em;
+            }
+            
+            .message.user {
+                margin-right: 5%;
+            }
+            
+            .message.assistant {
+                margin-left: 5%;
+            }
 
-        @keyframes bounce {
-            0%, 80%, 100% { transform: scale(0); }
-            40% { transform: scale(1); }
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        
-        }
-
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
+            .profile-form {
+                padding: 25px;
+            }
         }
 
         /* Paywall Modal */
@@ -257,32 +384,34 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.8);
+            background: rgba(0, 0, 0, 0.9);
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 10000;
         }
 
         .paywall-content {
-            background: linear-gradient(135deg, #2d1b69 0%, #1a1a2e 100%);
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a0f2e 100%);
             padding: 3rem;
             border-radius: 20px;
             max-width: 500px;
             width: 90%;
             text-align: center;
-            border: 2px solid #667eea;
-            box-shadow: 0 0 40px rgba(102, 126, 234, 0.3);
+            border: 2px solid #daa520;
+            box-shadow: 0 0 40px rgba(218, 165, 32, 0.3);
         }
 
         .paywall-content h2 {
-            color: #667eea;
+            color: #daa520;
             margin-bottom: 1.5rem;
             font-size: 1.8rem;
+            font-family: 'Georgia', serif;
         }
 
         .paywall-content p {
-            color: #b0b0b0;
+            color: #c4b5fd;
             margin-bottom: 2rem;
+            font-size: 1.1rem;
         }
 
         .features {
@@ -293,11 +422,12 @@
         .features li {
             margin: 1rem 0;
             color: #e0e0e0;
+            font-size: 1.05rem;
         }
 
         .paywall-btn {
-            background: linear-gradient(135deg, #f7971e 0%, #ffd200 100%);
-            color: #1a1a2e;
+            background: linear-gradient(135deg, #daa520 0%, #ffd700 100%);
+            color: #2d1b4e;
             padding: 1.2rem 3rem;
             border: none;
             border-radius: 10px;
@@ -306,11 +436,12 @@
             cursor: pointer;
             transition: all 0.3s ease;
             width: 100%;
+            font-family: 'Georgia', serif;
         }
 
         .paywall-btn:hover {
             transform: scale(1.05);
-            box-shadow: 0 10px 30px rgba(247, 151, 30, 0.4);
+            box-shadow: 0 10px 30px rgba(218, 165, 32, 0.4);
         }
 
         .paywall-btn:disabled {
@@ -323,8 +454,10 @@
             color: rgba(255, 255, 255, 0.7);
             font-size: 12px;
             margin-top: 20px;
+            font-style: italic;
         }
     </style>
+<script src="https://js.stripe.com/v3/"></script>
 <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
 </head>
 <body>
@@ -365,59 +498,129 @@
 
             <!-- Self-Discovery Questions -->
             <div class="form-section">
-                <h3>Self-Reflection</h3>
+                <h3>Your Self-Discovery Profile <span class="optional-label">(Optional - Helps personalize your experience)</span></h3>
+                <p>These questions help the Oracle understand you better. Answer what feels comfortable - you can skip any.</p>
+                
                 <div class="form-group">
-                    <label for="personality">What are your core personality traits?</label>
-                    <textarea id="personality" rows="3" placeholder="Describe yourself (e.g., thoughtful, creative, analytical...)"></textarea>
+                    <label for="personality">1. Describe your personality</label>
+                    <textarea id="personality" placeholder="What makes you unique? How would you describe yourself?"></textarea>
                 </div>
+
                 <div class="form-group">
-                    <label for="goals">What are your current life goals?</label>
-                    <textarea id="goals" rows="3" placeholder="What do you want to achieve?"></textarea>
+                    <label for="goals">2. What are your goals and aspirations?</label>
+                    <textarea id="goals" placeholder="What do you hope to achieve? What matters most to you?"></textarea>
                 </div>
+
                 <div class="form-group">
-                    <label for="challenges">What challenges are you facing?</label>
-                    <textarea id="challenges" rows="3" placeholder="What obstacles are in your way?"></textarea>
+                    <label for="challenges">3. What are your challenges and obstacles?</label>
+                    <textarea id="challenges" placeholder="What difficulties are you facing? What stands in your way?"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="environment">4. How is your environment supporting you in your goals?</label>
+                    <textarea id="environment" placeholder="What in your life helps you move forward? What resources do you have?"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="past">5. Anything relevant from your past shaping your present?</label>
+                    <textarea id="past" placeholder="Past experiences that influence who you are today"></textarea>
                 </div>
             </div>
 
-            <!-- Relationships -->
+            <!-- Important Relationships -->
             <div class="form-section">
-                <h3>Important Relationships</h3>
-                <div class="form-group">
-                    <label for="rel1_name">Person 1</label>
-                    <input type="text" id="rel1_name" placeholder="Name">
-                    <input type="date" id="rel1_birthDate" style="margin-top: 0.5rem;" placeholder="Birth Date">
-                    <select id="rel1_gender" style="margin-top: 0.5rem;">
-                        <option value="">Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
+                <h3>Important People in Your Life <span class="optional-label">(Optional - Enhances personal insights)</span></h3>
+                <p>Add significant people who influence your life. Their types will be calculated and referenced in your session.</p>
+                
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="rel1_name">Name</label>
+                        <input type="text" id="rel1_name" placeholder="e.g., Mark, Mom, Brother">
+                    </div>
+                    <div class="form-group">
+                        <label for="rel1_gender">Gender</label>
+                        <select id="rel1_gender">
+                            <option value="">Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rel1_birthDate">Birth Date</label>
+                        <input type="date" id="rel1_birthDate">
+                    </div>
                 </div>
-                <div class="form-group">
-                    <label for="rel2_name">Person 2</label>
-                    <input type="text" id="rel2_name" placeholder="Name">
-                    <input type="date" id="rel2_birthDate" style="margin-top: 0.5rem;" placeholder="Birth Date">
-                    <select id="rel2_gender" style="margin-top: 0.5rem;">
-                        <option value="">Gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="rel2_name">Name</label>
+                        <input type="text" id="rel2_name" placeholder="e.g., Sarah, Dad, Sister">
+                    </div>
+                    <div class="form-group">
+                        <label for="rel2_gender">Gender</label>
+                        <select id="rel2_gender">
+                            <option value="">Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rel2_birthDate">Birth Date</label>
+                        <input type="date" id="rel2_birthDate">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="rel3_name">Name</label>
+                        <input type="text" id="rel3_name" placeholder="e.g., Tom, Partner, Friend">
+                    </div>
+                    <div class="form-group">
+                        <label for="rel3_gender">Gender</label>
+                        <select id="rel3_gender">
+                            <option value="">Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rel3_birthDate">Birth Date</label>
+                        <input type="date" id="rel3_birthDate">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="rel4_name">Name</label>
+                        <input type="text" id="rel4_name" placeholder="e.g., Lisa, Mentor, Colleague">
+                    </div>
+                    <div class="form-group">
+                        <label for="rel4_gender">Gender</label>
+                        <select id="rel4_gender">
+                            <option value="">Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rel4_birthDate">Birth Date</label>
+                        <input type="date" id="rel4_birthDate">
+                    </div>
                 </div>
             </div>
 
-            <button id="submitProfile">Begin Your Journey</button>
+            <button id="submitProfile" class="submit-btn">Begin Your Oracle Session</button>
+            <div id="errorMessage" class="error-message"></div>
         </div>
 
-        <div id="chatSection" class="chat-container hidden">
-            <h2>Your Oracle Conversation</h2>
+        <div id="chatSection" class="chat-container">
             <div id="chatMessages" class="chat-messages"></div>
             <div id="typingIndicator" class="typing-indicator">
-                <span></span><span></span><span></span>
-                <div style="margin-top: 0.5rem;">Oracle is thinking...</div>
+                Oracle is reflecting...
             </div>
-            <div class="input-area">
-                <input type="text" id="messageInput" placeholder="Ask your question...">
-                <button id="sendMessage">Send</button>
+            <div class="chat-input-container">
+                <input type="text" id="messageInput" class="chat-input" placeholder="Share your thoughts...">
+                <button id="sendMessage" class="send-btn">Send</button>
             </div>
 
         <!-- Paywall Modal -->
@@ -440,7 +643,7 @@
     <script>
         // Initialize Stripe with your publishable key
         const stripe = Stripe('pk_live_51KrXfwDlxujRXWhvb0GeKhqwkCxu0XNCzNFdM5FVFNehH5SJ9l4HE9nsje2mskXR1dgMFwd1DYIIElS5jL3OjT2v00CG7kseVS');
-        
+
         // Generate unique session ID
         function generateSessionId() {
             return 'sess_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
@@ -449,9 +652,25 @@
         // API Base URL
         const API_BASE_URL = '/api';
 
-        // State
-        let sessionId = generateSessionId();
-        let profile = null;
+        // State - Restore from localStorage if available
+        let sessionId = localStorage.getItem('oracle_session_id') || generateSessionId();
+        let profile = JSON.parse(localStorage.getItem('oracle_profile')) || null;
+        
+        // Save session to localStorage
+        function saveSession() {
+            localStorage.setItem('oracle_session_id', sessionId);
+            if (profile) {
+                localStorage.setItem('oracle_profile', JSON.stringify(profile));
+            }
+        }
+        
+        // Clear session
+        function clearSession() {
+            localStorage.removeItem('oracle_session_id');
+            localStorage.removeItem('oracle_profile');
+            sessionId = generateSessionId();
+            profile = null;
+        }
 
         // DOM Elements
         const profileSection = document.getElementById('profileSection');
@@ -484,17 +703,13 @@
         // Collect relationships
         function collectRelationships() {
             const relationships = [];
-            for (let i = 1; i <= 2; i++) {
+            for (let i = 1; i <= 4; i++) {
                 const name = document.getElementById(`rel${i}_name`).value.trim();
                 const gender = document.getElementById(`rel${i}_gender`).value;
                 const birthDate = document.getElementById(`rel${i}_birthDate`).value;
-
-                if (name && birthDate && gender) {
-                    relationships.push({
-                        name: name,
-                        gender: gender,
-                        birth_date: birthDate
-                    });
+                
+                if (name && gender && birthDate) {
+                    relationships.push({ name, gender, birth_date: birthDate });
                 }
             }
             return relationships;
@@ -511,18 +726,24 @@
                 return;
             }
 
+            // Collect optional profile data
+            const profileData = {
+                personality: document.getElementById('personality').value.trim(),
+                goals: document.getElementById('goals').value.trim(),
+                challenges: document.getElementById('challenges').value.trim(),
+                environment: document.getElementById('environment').value.trim(),
+                past: document.getElementById('past').value.trim()
+            };
+
+            // Collect relationships
+            const relationships = collectRelationships();
+
             submitProfileBtn.disabled = true;
-            submitProfileBtn.textContent = 'Initializing...';
+            submitProfileBtn.textContent = 'Connecting to Oracle...';
 
             try {
-                const profileData = {
-                    personality: document.getElementById('personality').value.trim(),
-                    goals: document.getElementById('goals').value.trim(),
-                    challenges: document.getElementById('challenges').value.trim()
-                };
-
-                const relationships = collectRelationships();
-
+                console.log('Attempting to connect to:', `${API_BASE_URL}/init-profile`);
+                
                 const response = await fetch(`${API_BASE_URL}/init-profile`, {
                     method: 'POST',
                     headers: {
@@ -538,52 +759,81 @@
                     })
                 });
 
+                console.log('Response status:', response.status);
+                
                 const data = await response.json();
+                console.log('Response data:', data);
 
                 if (data.success) {
-                    profile = data;
-                    profileSection.classList.add('hidden');
-                    chatSection.classList.remove('hidden');
+                    profile = { 
+                        name, 
+                        gender, 
+                        birthDate, 
+                        sessionId,
+                        profileData,
+                        relationships
+                    };
+                    
+                    // Save session to localStorage
+                    saveSession();
+                    
+                    // Switch to chat interface
+                    profileSection.style.display = 'none';
+                    chatSection.style.display = 'block';
+                    
+                    // Add greeting message
                     addMessage(data.greeting, 'assistant');
+                    
+                    // Focus on input
                     messageInput.focus();
                 } else {
                     showError(data.error || 'Failed to initialize profile');
                     submitProfileBtn.disabled = false;
-                    submitProfileBtn.textContent = 'Begin Your Journey';
+                    submitProfileBtn.textContent = 'Begin Your Oracle Session';
                 }
             } catch (error) {
-                console.error('Init error:', error);
-                showError('Failed to connect. Please try again.');
+                console.error('Error:', error);
+                showError(`Failed to connect: ${error.message}. Please try again.`);
                 submitProfileBtn.disabled = false;
-                submitProfileBtn.textContent = 'Begin Your Journey';
+                submitProfileBtn.textContent = 'Begin Your Oracle Session';
             }
         }
 
         // Send message
         async function sendMessage() {
             const message = messageInput.value.trim();
+            
             if (!message) return;
 
-            messageInput.value = '';
+            // Add user message to chat
             addMessage(message, 'user');
+            messageInput.value = '';
+            sendMessageBtn.disabled = true;
+
+            // Show typing indicator
+            typingIndicator.style.display = 'block';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
 
             try {
-                sendMessageBtn.disabled = true;
-                typingIndicator.style.display = 'block';
-
+                console.log('Sending message to:', `${API_BASE_URL}/chat`);
+                
                 const response = await fetch(`${API_BASE_URL}/chat`, {
                     method: 'POST',
                     headers: {
                         'Content-Type': 'application/json',
                     },
                     body: JSON.stringify({
-                        session_id: sessionId,
-                        message: message
+                        message,
+                        session_id: sessionId
                     })
                 });
 
+                console.log('Response status:', response.status);
+                
                 const data = await response.json();
+                console.log('Response data:', data);
 
+                // Hide typing indicator
                 typingIndicator.style.display = 'none';
 
                 if (data.success) {
@@ -591,17 +841,58 @@
                 } else if (data.error === 'PAYWALL_REACHED') {
                     showPaywall(data);
                 } else {
-                    showError(data.error || 'Failed to send message');
+                    addMessage('I apologize, but I encountered an error. Please try again.', 'assistant');
                 }
             } catch (error) {
-                console.error('Chat error:', error);
-                showError('Failed to connect. Please try again.');
+                console.error('Error:', error);
                 typingIndicator.style.display = 'none';
-            } finally {
-                sendMessageBtn.disabled = false;
+                addMessage(`I apologize, but I'm having trouble connecting: ${error.message}. Please try again.`, 'assistant');
+            }
+
+            sendMessageBtn.disabled = false;
+            messageInput.focus();
+        }
+
+        // Event listeners
+        
+        // Restore session on page load
+        window.addEventListener('load', async () => {
+            // Check if coming back from payment success
+            const urlParams = new URLSearchParams(window.location.search);
+            const paymentSuccess = urlParams.get('payment_success');
+            
+            if (paymentSuccess === 'true' && profile) {
+                // User returned from payment, restore chat
+                console.log('Restoring session after payment');
+                profileSection.style.display = 'none';
+                chatSection.style.display = 'block';
+                addMessage('✨ Payment successful! You now have unlimited access to continue your journey of self-discovery.', 'assistant');
+                messageInput.focus();
+            } else if (profile) {
+                // Restore existing session
+                console.log('Restoring existing session');
+                profileSection.style.display = 'none';
+                chatSection.style.display = 'block';
                 messageInput.focus();
             }
-        }
+        });
+        
+        submitProfileBtn.addEventListener('click', initProfile);
+
+        sendMessageBtn.addEventListener('click', sendMessage);
+
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !sendMessageBtn.disabled) {
+                sendMessage();
+            }
+        });
+
+        // Prevent form submission
+        document.getElementById('birthDate').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+            }
+        });
 
         // Show paywall modal
         function showPaywall(data) {
@@ -657,24 +948,6 @@
                 }
             };
         }
-
-        // Event listeners
-        submitProfileBtn.addEventListener('click', initProfile);
-
-        sendMessageBtn.addEventListener('click', sendMessage);
-
-        messageInput.addEventListener('keypress', (e) => {
-            if (e.key === 'Enter' && !sendMessageBtn.disabled) {
-                sendMessage();
-            }
-        });
-
-        // Prevent form submission
-        document.getElementById('birthDate').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                e.preventDefault();
-            }
-        });
     </script>
 </body>
 </html>
