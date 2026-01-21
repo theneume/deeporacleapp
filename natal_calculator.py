@@ -54,27 +54,6 @@ def get_month_row(day: int, month: int, year: int) -> int:
 
     return -1
 
-def calculate_natal_type_from_dob(dob: str, gender: str) -> str:
-    """
-    Convenience function to calculate natal type from date string and gender.
-    Accepts date string in format YYYY-MM-DD.
-    """
-    day, month, year = parse_date_string(dob)
-    return calculate_natal_type(day, month, year, gender)
-
-def parse_date_string(dob: str):
-    """
-    Parse date string in format YYYY-MM-DD and return day, month, year.
-    """
-    try:
-        parts = dob.split('-')
-        year = int(parts[0])
-        month = int(parts[1])
-        day = int(parts[2])
-        return day, month, year
-    except Exception as e:
-        raise ValueError(f"Invalid date format: {dob}. Expected YYYY-MM-DD")
-
 def calculate_natal_type(day: int, month: int, year: int, gender: str) -> str:
     """
     Calculates the natal Affinity Zone (SS, SD, DS, DD) based on birth date and gender.
