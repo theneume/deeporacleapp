@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LOHA - Love of Human Attraction</title>
+    <title>Deep Oracle - Your Psychology Coach for Self-Discovery</title>
     <style>
         * {
             margin: 0;
@@ -12,970 +12,979 @@
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            font-family: 'Georgia', 'Times New Roman', serif;
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a0f2e 50%, #0a0514 100%);
             min-height: 100vh;
-            color: #fff;
+            color: #f5f5f5;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        /* Elegant background pattern */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(circle at 20% 50%, rgba(138, 43, 226, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(75, 0, 130, 0.1) 0%, transparent 50%);
+            pointer-events: none;
+            z-index: 0;
         }
 
         .container {
-            max-width: 1200px;
+            max-width: 900px;
             margin: 0 auto;
             padding: 20px;
+            position: relative;
+            z-index: 1;
         }
 
-        /* Header */
-        header {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 30px 40px;
-            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
+        .header {
+            text-align: center;
+            padding: 60px 20px 40px;
+            background: rgba(255, 255, 255, 0.03);
             border-radius: 20px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
-        }
-
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 20px;
-        }
-
-        .logo {
-            width: 80px;
-            height: 80px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 3px solid #ffd93d;
-        }
-
-        .header-text h1 {
-            font-size: 2.5rem;
-            font-weight: 800;
-            margin-bottom: 5px;
-            text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
-        }
-
-        .header-text .tagline {
-            font-size: 1rem;
-            font-weight: 400;
-            opacity: 0.95;
-        }
-
-        .header-buttons {
-            display: flex;
-            gap: 15px;
-        }
-
-        .header-btn {
-            padding: 12px 25px;
-            border: none;
-            border-radius: 25px;
-            font-size: 1rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-        }
-
-        .header-btn.primary {
-            background: #ffd93d;
-            color: #1a1a2e;
-        }
-
-        .header-btn.secondary {
-            background: rgba(255,255,255,0.2);
-            color: #fff;
-            border: 2px solid #fff;
-        }
-
-        .header-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 20px rgba(255, 217, 61, 0.4);
-        }
-
-        /* Hero Section */
-        .hero-section {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 30px;
             margin-bottom: 40px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        .hero-image {
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
-            height: 400px;
-        }
-
-        .hero-image img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-
-        .hero-image:hover img {
-            transform: scale(1.05);
-        }
-
-        .hero-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            padding: 20px;
-        }
-
-        .hero-content h2 {
-            font-size: 2.5rem;
-            margin-bottom: 20px;
-            background: linear-gradient(135deg, #f39c12 0%, #ffd93d 100%);
+        .header h1 {
+            font-size: 3em;
+            margin-bottom: 15px;
+            background: linear-gradient(135deg, #daa520 0%, #ffd700 50%, #daa520 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            font-weight: 300;
+            letter-spacing: 3px;
+            text-shadow: 0 0 30px rgba(218, 165, 32, 0.3);
         }
 
-        .hero-content p {
-            font-size: 1.1rem;
-            line-height: 1.8;
-            margin-bottom: 15px;
-            opacity: 0.9;
+        .header .subtitle {
+            color: #d4af37;
+            font-size: 1.3em;
+            font-style: italic;
+            margin-bottom: 10px;
+            font-weight: 300;
         }
 
-        /* Feature Cards */
-        .features {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 30px;
-            margin: 40px 0;
-        }
-
-        .feature-card {
-            background: rgba(255,255,255,0.05);
-            padding: 30px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .feature-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.2);
-        }
-
-        .feature-card .icon {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
-        }
-
-        .feature-card h3 {
-            color: #f39c12;
-            font-size: 1.5rem;
-            margin-bottom: 15px;
-        }
-
-        .feature-card p {
-            opacity: 0.9;
+        .header p {
+            color: #b8b8b8;
+            font-size: 1.05em;
             line-height: 1.6;
+            max-width: 600px;
+            margin: 0 auto;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        /* Archetypes Section */
-        .archetypes-section {
-            background: rgba(255,255,255,0.03);
+        .profile-form {
+            background: rgba(255, 255, 255, 0.05);
             padding: 40px;
             border-radius: 20px;
-            margin: 40px 0;
-            border: 1px solid rgba(255,255,255,0.1);
+            margin-bottom: 40px;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        .archetypes-section h2 {
-            text-align: center;
-            font-size: 2.5rem;
-            margin-bottom: 10px;
-            background: linear-gradient(135deg, #f39c12 0%, #ffd93d 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        .archetypes-section .subtitle {
-            text-align: center;
+        .profile-form h2 {
+            color: #daa520;
             margin-bottom: 30px;
-            opacity: 0.8;
-        }
-
-        .archetypes-grid {
-            display: grid;
-            grid-template-columns: repeat(4, 1fr);
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .archetype-token {
-            background: rgba(255,255,255,0.05);
-            padding: 20px;
-            border-radius: 15px;
+            font-weight: 300;
+            font-size: 1.8em;
             text-align: center;
-            transition: all 0.3s ease;
-            border: 1px solid rgba(255,255,255,0.1);
-            cursor: pointer;
+            letter-spacing: 2px;
         }
 
-        .archetype-token:hover {
-            transform: scale(1.05);
-            background: rgba(255,255,255,0.1);
-            border-color: #f39c12;
-        }
-
-        .archetype-token .token-icon {
-            font-size: 2rem;
-            margin-bottom: 10px;
-        }
-
-        .archetype-token h4 {
-            color: #ffd93d;
-            font-size: 1.2rem;
-            margin-bottom: 5px;
-        }
-
-        .archetype-token p {
-            font-size: 0.9rem;
-            opacity: 0.8;
-        }
-
-        .archetypes-info {
-            background: rgba(255,107,157,0.1);
-            padding: 20px;
-            border-radius: 15px;
-            text-align: center;
-            border-left: 4px solid #f39c12;
-        }
-
-        .archetypes-info h3 {
-            color: #f39c12;
-            margin-bottom: 10px;
-        }
-
-        .archetypes-info p {
-            opacity: 0.9;
-            line-height: 1.6;
-        }
-
-        /* Form Section */
         .form-section {
-            background: rgba(255,255,255,0.05);
-            padding: 40px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            margin-bottom: 40px;
+            margin-bottom: 35px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
         }
 
-        .form-section h2 {
-            font-size: 2rem;
-            margin-bottom: 30px;
-            color: #f39c12;
-            text-align: center;
+        .form-section:last-child {
+            border-bottom: none;
+            margin-bottom: 0;
+            padding-bottom: 0;
         }
 
-        .form-grid {
+        .form-section h3 {
+            color: #d4af37;
+            margin-bottom: 20px;
+            font-weight: 300;
+            font-size: 1.3em;
+            letter-spacing: 1px;
+        }
+
+        .form-section p {
+            color: #b8b8b8;
+            font-size: 0.95em;
+            margin-bottom: 20px;
+            font-style: italic;
+        }
+
+        .form-row {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 20px;
-            margin-bottom: 30px;
+            margin-bottom: 20px;
         }
 
         .form-group {
             margin-bottom: 20px;
         }
 
-        label {
+        .form-group label {
             display: block;
-            font-weight: 600;
             margin-bottom: 8px;
-            color: #f39c12;
-            font-size: 0.95rem;
+            color: #d4af37;
+            font-weight: 400;
+            font-size: 0.95em;
+            letter-spacing: 1px;
         }
 
-        input, select, textarea {
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
             width: 100%;
-            padding: 12px 15px;
-            border: 2px solid rgba(255,255,255,0.1);
+            padding: 14px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
             border-radius: 10px;
-            background: rgba(255,255,255,0.05);
-            color: #fff;
-            font-size: 1rem;
+            background: rgba(255, 255, 255, 0.05);
+            color: #f5f5f5;
+            font-size: 15px;
             transition: all 0.3s ease;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #f39c12;
-            background: rgba(255,255,255,0.1);
-        }
-
-        /* Fix dropdown text color */
-        select {
-            color: #000;
-            background: #fff;
-        }
-
-        select option {
-            color: #000;
-            background: #fff;
-        }
-
-        textarea {
+        .form-group textarea {
+            min-height: 80px;
             resize: vertical;
-            min-height: 120px;
+            line-height: 1.5;
         }
 
-        .relationship-entry {
-            background: rgba(255,255,255,0.03);
-            padding: 20px;
-            border-radius: 15px;
-            margin-bottom: 20px;
-            border: 1px solid rgba(255,255,255,0.1);
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: #daa520;
+            background: rgba(255, 255, 255, 0.08);
+            box-shadow: 0 0 20px rgba(218, 165, 32, 0.2);
         }
 
-        .relationship-entry h3 {
-            color: #f39c12;
-            margin-bottom: 15px;
-            font-size: 1.2rem;
+        .form-group select option {
+            background: #1a0f2e;
+            color: #f5f5f5;
         }
 
-        button.submit-btn {
-            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
-            color: #fff;
+        .optional-label {
+            font-size: 0.85em;
+            color: #b8b8b8;
+            font-weight: 300;
+            font-style: italic;
+        }
+
+        .submit-btn {
+            width: 100%;
+            padding: 18px;
+            background: linear-gradient(135deg, #daa520 0%, #d4af37 100%);
+            color: #1a0f2e;
             border: none;
-            padding: 15px 40px;
-            font-size: 1.2rem;
-            font-weight: 700;
-            border-radius: 30px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: 600;
             cursor: pointer;
             transition: all 0.3s ease;
-            box-shadow: 0 5px 20px rgba(255, 107, 157, 0.4);
-            display: block;
-            margin: 30px auto;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            box-shadow: 0 4px 20px rgba(218, 165, 32, 0.3);
         }
 
-        button.submit-btn:hover {
+        .submit-btn:hover {
             transform: translateY(-2px);
-            box-shadow: 0 8px 25px rgba(255, 107, 157, 0.5);
+            box-shadow: 0 6px 30px rgba(218, 165, 32, 0.5);
+            background: linear-gradient(135deg, #ffd700 0%, #daa520 100%);
         }
 
-        /* Chat Section */
-        .chat-section {
-            display: none;
-            background: rgba(255,255,255,0.05);
-            padding: 30px;
-            border-radius: 20px;
-            backdrop-filter: blur(10px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-        }
-
-        .chat-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 20px;
-            border-bottom: 2px solid rgba(255, 107, 157, 0.3);
-        }
-
-        .chat-header h2 {
-            color: #f39c12;
-            font-size: 1.8rem;
+        .submit-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
         }
 
         .chat-container {
-            height: 500px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 20px;
+            overflow: hidden;
+            display: none;
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+        }
+
+        .chat-messages {
+            padding: 30px;
+            max-height: 550px;
             overflow-y: auto;
-            padding: 20px;
-            background: rgba(0,0,0,0.2);
-            border-radius: 15px;
-            margin-bottom: 20px;
+            min-height: 350px;
+        }
+
+        .chat-messages::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        .chat-messages::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.05);
+            border-radius: 10px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb {
+            background: rgba(218, 165, 32, 0.3);
+            border-radius: 10px;
+        }
+
+        .chat-messages::-webkit-scrollbar-thumb:hover {
+            background: rgba(218, 165, 32, 0.5);
         }
 
         .message {
             margin-bottom: 20px;
-            animation: fadeIn 0.3s ease;
+            padding: 20px;
+            border-radius: 15px;
+            line-height: 1.7;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            animation: fadeIn 0.5s ease;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(10px); }
-            to { opacity: 1; transform: translateY(0); }
+            from {
+                opacity: 0;
+                transform: translateY(10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
         }
 
         .message.user {
-            text-align: right;
+            background: linear-gradient(135deg, rgba(218, 165, 32, 0.2) 0%, rgba(212, 175, 55, 0.15) 100%);
+            margin-left: 0;
+            margin-right: 10%;
+            border-left: 3px solid #daa520;
         }
 
         .message.assistant {
-            text-align: left;
+            background: rgba(255, 255, 255, 0.05);
+            margin-left: 10%;
+            margin-right: 0;
+            border-left: 3px solid rgba(138, 43, 226, 0.5);
         }
 
-        .message-content {
-            display: inline-block;
-            max-width: 70%;
-            padding: 15px 20px;
-            border-radius: 20px;
-            line-height: 1.6;
-        }
-
-        .message.user .message-content {
-            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
-            border-bottom-right-radius: 5px;
-        }
-
-        .message.assistant .message-content {
-            background: rgba(255,255,255,0.1);
-            border-bottom-left-radius: 5px;
+        .chat-input-container {
+            padding: 25px;
+            background: rgba(255, 255, 255, 0.05);
+            display: flex;
+            gap: 15px;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
         }
 
         .chat-input {
-            display: flex;
-            gap: 10px;
-        }
-
-        .chat-input input {
             flex: 1;
-            margin-bottom: 0;
+            padding: 15px;
+            border: 1px solid rgba(212, 175, 55, 0.3);
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #f5f5f5;
+            font-size: 16px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
         }
 
-        .chat-input button {
-            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
-            margin: 0;
-            padding: 12px 30px;
-            font-size: 1rem;
+        .chat-input:focus {
+            outline: none;
+            border-color: #daa520;
+            box-shadow: 0 0 20px rgba(218, 165, 32, 0.2);
+        }
+
+        .send-btn {
+            padding: 15px 30px;
+            background: linear-gradient(135deg, #daa520 0%, #d4af37 100%);
+            color: #1a0f2e;
             border: none;
-            border-radius: 25px;
-            color: #fff;
+            border-radius: 10px;
+            font-weight: 600;
             cursor: pointer;
-            font-weight: 600;
+            transition: all 0.3s ease;
+            letter-spacing: 1px;
+            text-transform: uppercase;
         }
 
-        /* Testimonial */
-        .testimonial {
-            background: linear-gradient(135deg, #f39c12 0%, #e67e22 100%);
-            padding: 40px;
-            border-radius: 20px;
-            text-align: center;
-            margin: 40px 0;
-            box-shadow: 0 10px 30px rgba(255, 107, 157, 0.3);
+        .send-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 20px rgba(218, 165, 32, 0.4);
         }
 
-        .testimonial p {
-            font-size: 1.3rem;
+        .send-btn:disabled {
+            opacity: 0.5;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .typing-indicator {
+            display: none;
+            padding: 20px;
+            color: #d4af37;
             font-style: italic;
-            margin-bottom: 20px;
+            text-align: center;
         }
 
-        .testimonial cite {
-            font-weight: 600;
+        .error-message {
+            background: rgba(220, 53, 69, 0.2);
+            border: 1px solid rgba(220, 53, 69, 0.5);
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            color: #ff6b6b;
+            display: none;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .header .subtitle {
+                font-size: 1.1em;
+            }
+            
+            .message.user {
+                margin-right: 5%;
+            }
+            
+            .message.assistant {
+                margin-left: 5%;
+            }
+
+            .profile-form {
+                padding: 25px;
+            }
+        }
+
+        /* Paywall Modal */
+        .paywall-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 10000;
+        }
+
+        .paywall-content {
+            background: linear-gradient(135deg, #2d1b4e 0%, #1a0f2e 100%);
+            padding: 3rem;
+            border-radius: 20px;
+            max-width: 500px;
+            width: 90%;
+            text-align: center;
+            border: 2px solid #daa520;
+            box-shadow: 0 0 40px rgba(218, 165, 32, 0.3);
+        }
+
+        .paywall-content h2 {
+            color: #daa520;
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            font-family: 'Georgia', serif;
+        }
+
+        .paywall-content p {
+            color: #c4b5fd;
+            margin-bottom: 2rem;
             font-size: 1.1rem;
         }
 
-        /* Footer */
-        footer {
-            text-align: center;
-            padding: 40px 20px;
-            color: rgba(255,255,255,0.7);
-            font-size: 0.9rem;
+        .features {
+            text-align: left;
+            margin: 2rem 0;
         }
 
-        footer .copyright {
-            margin-bottom: 20px;
-            line-height: 1.6;
+        .features li {
+            margin: 1rem 0;
+            color: #e0e0e0;
+            font-size: 1.05rem;
         }
 
-        footer .privacy-notice {
-            font-size: 0.8rem;
-            opacity: 0.8;
-            padding: 20px;
-            background: rgba(255,255,255,0.05);
+        .paywall-btn {
+            background: linear-gradient(135deg, #daa520 0%, #ffd700 100%);
+            color: #2d1b4e;
+            padding: 1.2rem 3rem;
+            border: none;
             border-radius: 10px;
-            max-width: 800px;
-            margin: 20px auto;
-            line-height: 1.5;
+            font-size: 1.2rem;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+            font-family: 'Georgia', serif;
         }
 
-        /* Responsive */
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                text-align: center;
-                gap: 20px;
-            }
-
-            .hero-section {
-                grid-template-columns: 1fr;
-            }
-
-            .hero-image {
-                height: 300px;
-            }
-
-            .archetypes-grid {
-                grid-template-columns: repeat(2, 1fr);
-            }
-
-            .message-content {
-                max-width: 85%;
-            }
+        .paywall-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(218, 165, 32, 0.4);
         }
 
-        /* Typing Indicator */
-        .typing-indicator {
-            display: inline-block;
-            padding: 15px 20px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 20px;
-            border-bottom-left-radius: 5px;
+        .paywall-btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
         }
 
-        .typing-indicator span {
-            display: inline-block;
-            width: 8px;
-            height: 8px;
-            background: #f39c12;
-            border-radius: 50%;
-            margin: 0 2px;
-            animation: typing 1.4s infinite;
-        }
-
-        @keyframes typing {
-            0%, 60%, 100% { transform: translateY(0); }
-            30% { transform: translateY(-10px); }
+        .secure-payment {
+            color: rgba(255, 255, 255, 0.7);
+            font-size: 12px;
+            margin-top: 20px;
+            font-style: italic;
         }
     </style>
+<script src="https://js.stripe.com/v3/"></script>
 <script src="https://sites.super.myninja.ai/_assets/ninja-daytona-script.js"></script>
 </head>
 <body>
     <div class="container">
-        <header>
-            <div class="header-left">
-                <img src="/static/lologo8.png" alt="LOHA Logo" class="logo">
-                <div class="header-text">
-                    <h1>LOHA</h1>
-                    <p class="tagline">Personalised Advice for Dating and Relationships</p>
-                </div>
-            </div>
-            <div class="header-buttons">
-                <a href="https://www.loha.dating" class="header-btn primary">Visit LOHA</a>
-                <a href="https://loha.dating/user/sign-up" class="header-btn secondary">Sign Up Free</a>
-            </div>
-        </header>
-
-        <div class="hero-section">
-            <div class="hero-image">
-                <img src="/static/lohafront1.png" alt="Romantic couple">
-            </div>
-            <div class="hero-content">
-                <h2>Discover Your Dating Archetype</h2>
-                <h2 style="font-size: 1.8rem;">Transform Your Love Life</h2>
-                <p>Based on 14 years of research into neurochemical types, LOHA provides personalized, science-based dating advice that actually works.</p>
-                <p>Understand your unique psychology, discover your archetype, and unlock the secrets to authentic connection and lasting attraction.</p>
-            </div>
+        <div class="header">
+            <h1>✨ DEEP ORACLE ✨</h1>
+            <div class="subtitle">Your Guide to Self-Discovery</div>
+            <p>Unlock the depths of your authentic self through personalized psychological insights and ancient wisdom</p>
         </div>
 
-        <div class="features">
-            <div class="feature-card">
-                <div class="icon">🧠</div>
-                <h3>Neurochemical Insights</h3>
-                <p>Deep understanding of your unique neurochemical type and how it affects your dating behavior and attraction patterns.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon">💎</div>
-                <h3>8 Unique Archetypes</h3>
-                <p>From Mystic to King, each archetype has distinct characteristics, strengths, and dating superpowers.</p>
-            </div>
-            <div class="feature-card">
-                <div class="icon">🗣️</div>
-                <h3>Personalized Coaching</h3>
-                <p>Get tailored advice that speaks directly to your archetype - no generic one-size-fits-all nonsense.</p>
-            </div>
-        </div>
-
-        <div class="archetypes-section">
-            <h2>✨ The 8 Dating Archetypes</h2>
-            <p class="subtitle">Discover which archetype resonates with you</p>
+        <div id="profileSection" class="profile-form">
+            <h2>Begin Your Journey Within</h2>
             
-            <div class="archetypes-grid">
-                <div class="archetype-token">
-                    <div class="token-icon">🔮</div>
-                    <h4>Mystic</h4>
-                    <p>Deep, soulful, intuitive</p>
-                </div>
-                <div class="archetype-token">
-                    <div class="token-icon">🌸</div>
-                    <h4>Maiden</h4>
-                    <p>Free-spirited, authentic, warm</p>
-                </div>
-                <div class="archetype-token">
-                    <div class="token-icon">👑</div>
-                    <h4>Queen</h4>
-                    <p>Sophisticated, discerning, refined</p>
-                </div>
-                <div class="archetype-token">
-                    <div class="token-icon">🏹</div>
-                    <h4>Huntress</h4>
-                    <p>Confident, ambitious, independent</p>
-                </div>
-                <div class="archetype-token">
-                    <div class="token-icon">✨</div>
-                    <h4>Magician</h4>
-                    <p>Intuitive, creative, insightful</p>
-                </div>
-                <div class="archetype-token">
-                    <div class="token-icon">⚔️</div>
-                    <h4>Knight</h4>
-                    <p>Chivalrous, protective, romantic</p>
-                </div>
-                <div class="archetype-token">
-                    <div class="token-icon">🛡️</div>
-                    <h4>Warrior</h4>
-                    <p>Confident, bold, accomplished</p>
-                </div>
-                <div class="archetype-token">
-                    <div class="token-icon">🦁</div>
-                    <h4>King</h4>
-                    <p>Natural leader, decisive, visionary</p>
+            <!-- Basic Information -->
+            <div class="form-section">
+                <h3>Your Information</h3>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="name">Your Name *</label>
+                        <input type="text" id="name" placeholder="Enter your name" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="gender">Gender *</label>
+                        <select id="gender" required>
+                            <option value="">Select your gender</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="birthDate">Birth Date *</label>
+                        <input type="date" id="birthDate" required>
+                    </div>
                 </div>
             </div>
 
-            <div class="archetypes-info">
-                <h3>Why Archetypes Matter</h3>
-                <p>Our archetype system combines your neurochemical type with your energy expression, helping you communicate better, attract the right matches, and create deeper, more meaningful connections.</p>
-            </div>
-        </div>
-
-        <div id="profileForm" class="form-section">
-            <h2>✨ Let's Discover Your Dating Archetype</h2>
-            
-            <div class="form-grid">
-                <div class="form-group">
-                    <label>Your Name</label>
-                    <input type="text" id="name" placeholder="Enter your name" required>
-                </div>
+            <!-- Self-Discovery Questions -->
+            <div class="form-section">
+                <h3>Your Self-Discovery Profile <span class="optional-label">(Optional - Helps personalize your experience)</span></h3>
+                <p>These questions help the Oracle understand you better. Answer what feels comfortable - you can skip any.</p>
                 
                 <div class="form-group">
-                    <label>Date of Birth</label>
-                    <input type="date" id="dob" required>
+                    <label for="personality">1. Describe your personality</label>
+                    <textarea id="personality" placeholder="What makes you unique? How would you describe yourself?"></textarea>
                 </div>
-                
+
                 <div class="form-group">
-                    <label>Gender</label>
-                    <select id="gender" required>
-                        <option value="">Select gender</option>
-                        <option value="male">Male</option>
-                        <option value="female">Female</option>
-                    </select>
+                    <label for="goals">2. What are your goals and aspirations?</label>
+                    <textarea id="goals" placeholder="What do you hope to achieve? What matters most to you?"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="challenges">3. What are your challenges and obstacles?</label>
+                    <textarea id="challenges" placeholder="What difficulties are you facing? What stands in your way?"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="environment">4. How is your environment supporting you in your goals?</label>
+                    <textarea id="environment" placeholder="What in your life helps you move forward? What resources do you have?"></textarea>
+                </div>
+
+                <div class="form-group">
+                    <label for="past">5. Anything relevant from your past shaping your present?</label>
+                    <textarea id="past" placeholder="Past experiences that influence who you are today"></textarea>
                 </div>
             </div>
 
-            <div class="form-group">
-                <label>🎓 What are your dating and relationship goals?</label>
-                <textarea id="goals" placeholder="Tell me what you're looking for - casual dating, serious relationship, marriage, or just having fun figuring it out..."></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>🤔 What are your biggest dating challenges or issues?</label>
-                <textarea id="challenges" placeholder="First date nerves? Bad text game? Attracting the wrong type? Can't get past the talking stage? Lay it all out..."></textarea>
-            </div>
-
-            <div class="form-group">
-                <label>💪 What areas do you want to improve?</label>
-                <textarea id="improvements" placeholder="Confidence? Conversation skills? Physical chemistry? Online dating profile? Be honest with yourself..."></textarea>
-            </div>
-
-            <div class="relationship-entry">
-                <h3>💥 Important People in Your Life (Optional)</h3>
-                <p style="margin-bottom: 15px; opacity: 0.8;">Add up to 4 people to understand relationship dynamics</p>
+            <!-- Important Relationships -->
+            <div class="form-section">
+                <h3>Important People in Your Life <span class="optional-label">(Optional - Enhances personal insights)</span></h3>
+                <p>Add significant people who influence your life. Their types will be calculated and referenced in your session.</p>
                 
-                <div id="relationships">
-                    <!-- Person 1 -->
-                    <div class="form-grid" style="margin-bottom: 20px;">
-                        <div class="form-group">
-                            <label>Person 1 - Name</label>
-                            <input type="text" class="rel-name" placeholder="Name">
-                        </div>
-                        <div class="form-group">
-                            <label>Date of Birth</label>
-                            <input type="date" class="rel-dob">
-                        </div>
-                        <div class="form-group">
-                            <label>Gender</label>
-                            <select class="rel-gender">
-                                <option value="">Select</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Relationship to You</label>
-                            <input type="text" class="rel-type" placeholder="Ex: ex, lover, friend, crush...">
-                        </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="rel1_name">Name</label>
+                        <input type="text" id="rel1_name" placeholder="e.g., Mark, Mom, Brother">
                     </div>
-
-                    <!-- Person 2 -->
-                    <div class="form-grid" style="margin-bottom: 20px;">
-                        <div class="form-group">
-                            <label>Person 2 - Name</label>
-                            <input type="text" class="rel-name" placeholder="Name">
-                        </div>
-                        <div class="form-group">
-                            <label>Date of Birth</label>
-                            <input type="date" class="rel-dob">
-                        </div>
-                        <div class="form-group">
-                            <label>Gender</label>
-                            <select class="rel-gender">
-                                <option value="">Select</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Relationship to You</label>
-                            <input type="text" class="rel-type" placeholder="Ex: ex, lover, friend, crush...">
-                        </div>
+                    <div class="form-group">
+                        <label for="rel1_gender">Gender</label>
+                        <select id="rel1_gender">
+                            <option value="">Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
                     </div>
-
-                    <!-- Person 3 -->
-                    <div class="form-grid" style="margin-bottom: 20px;">
-                        <div class="form-group">
-                            <label>Person 3 - Name</label>
-                            <input type="text" class="rel-name" placeholder="Name">
-                        </div>
-                        <div class="form-group">
-                            <label>Date of Birth</label>
-                            <input type="date" class="rel-dob">
-                        </div>
-                        <div class="form-group">
-                            <label>Gender</label>
-                            <select class="rel-gender">
-                                <option value="">Select</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Relationship to You</label>
-                            <input type="text" class="rel-type" placeholder="Ex: ex, lover, friend, crush...">
-                        </div>
+                    <div class="form-group">
+                        <label for="rel1_birthDate">Birth Date</label>
+                        <input type="date" id="rel1_birthDate">
                     </div>
+                </div>
 
-                    <!-- Person 4 -->
-                    <div class="form-grid" style="margin-bottom: 20px;">
-                        <div class="form-group">
-                            <label>Person 4 - Name</label>
-                            <input type="text" class="rel-name" placeholder="Name">
-                        </div>
-                        <div class="form-group">
-                            <label>Date of Birth</label>
-                            <input type="date" class="rel-dob">
-                        </div>
-                        <div class="form-group">
-                            <label>Gender</label>
-                            <select class="rel-gender">
-                                <option value="">Select</option>
-                                <option value="male">Male</option>
-                                <option value="female">Female</option>
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label>Relationship to You</label>
-                            <input type="text" class="rel-type" placeholder="Ex: ex, lover, friend, crush...">
-                        </div>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="rel2_name">Name</label>
+                        <input type="text" id="rel2_name" placeholder="e.g., Sarah, Dad, Sister">
+                    </div>
+                    <div class="form-group">
+                        <label for="rel2_gender">Gender</label>
+                        <select id="rel2_gender">
+                            <option value="">Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rel2_birthDate">Birth Date</label>
+                        <input type="date" id="rel2_birthDate">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="rel3_name">Name</label>
+                        <input type="text" id="rel3_name" placeholder="e.g., Tom, Partner, Friend">
+                    </div>
+                    <div class="form-group">
+                        <label for="rel3_gender">Gender</label>
+                        <select id="rel3_gender">
+                            <option value="">Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rel3_birthDate">Birth Date</label>
+                        <input type="date" id="rel3_birthDate">
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="rel4_name">Name</label>
+                        <input type="text" id="rel4_name" placeholder="e.g., Lisa, Mentor, Colleague">
+                    </div>
+                    <div class="form-group">
+                        <label for="rel4_gender">Gender</label>
+                        <select id="rel4_gender">
+                            <option value="">Select</option>
+                            <option value="male">Male</option>
+                            <option value="female">Female</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="rel4_birthDate">Birth Date</label>
+                        <input type="date" id="rel4_birthDate">
                     </div>
                 </div>
             </div>
 
-            <button class="submit-btn" onclick="submitProfile()">✨ Discover My Archetype</button>
+            <button id="submitProfile" class="submit-btn">Begin Your Oracle Session</button>
+            <div id="errorMessage" class="error-message"></div>
         </div>
 
-        <div id="chatSection" class="chat-section">
-            <div class="chat-header">
-                <h2>🗣️ Let's Talk Dating</h2>
-                <button class="header-btn secondary" onclick="resetChat()" style="margin: 0; padding: 10px 20px; font-size: 0.9rem;">New Chat</button>
+        <div id="chatSection" class="chat-container">
+            <div id="chatMessages" class="chat-messages"></div>
+            <div id="typingIndicator" class="typing-indicator">
+                Oracle is reflecting...
             </div>
-            <div id="chatContainer" class="chat-container">
-                <!-- Messages will appear here -->
+            <div class="chat-input-container">
+                <input type="text" id="messageInput" class="chat-input" placeholder="Share your thoughts...">
+                <button id="sendMessage" class="send-btn">Send</button>
             </div>
-            <div class="chat-input">
-                <input type="text" id="messageInput" placeholder="Ask me anything about dating..." onkeypress="if(event.key === 'Enter') sendMessage()">
-                <button onclick="sendMessage()">Send</button>
+
+        <!-- Paywall Modal -->
+        <div id="paywallModal" class="paywall-modal">
+            <div class="paywall-content">
+                <h2>✨ Continue Your Journey</h2>
+                <p>You've used your 5 free messages. Unlock unlimited access for just $2.95!</p>
+                <ul class="features">
+                    <li>✓ Unlimited messaging</li>
+                    <li>✓ Deep self-discovery</li>
+                    <li>✓ Cultural avatar insights</li>
+                    <li>✓ Personalized guidance</li>
+                </ul>
+                <button id="paywallBtn" class="paywall-btn">Continue - $2.95</button>
+                <p class="secure-payment">🔒 Secure payment powered by Stripe</p>
             </div>
         </div>
-
-        <div class="testimonial">
-            <p>"Finally, a dating coach who gets it! LOHA helped me understand my archetype and suddenly everything clicked. I'm attracting the right people and having way more fun."</p>
-            <cite>- Sarah, The Queen</cite>
-        </div>
-
-        <footer>
-            <div class="copyright">
-                <p>Loha Dating Coach and Deepsyke AI. Copyright. 2026. All rights reserved.</p>
-                <p>Affinity Zones, Deepsyke AI modelling is exclusively licensed and protected IP.</p>
-            </div>
-            <div class="privacy-notice">
-                <strong>Privacy & Disclaimer:</strong><br>
-                This is not a medical or professional diagnosis but a self-help tool used at the discretion of the user and we take no responsibility for the actions taken as a result of engaging with Deepsyke integrations. No personal data is stored or captured and is only valid for a single session or until user closes browser.
-            </div>
-        </footer>
     </div>
 
     <script>
-        let sessionId = '';
-        let userName = '';
+        // Initialize Stripe with your publishable key
+        const stripe = Stripe('pk_live_51KrXfwDlxujRXWhvb0GeKhqwkCxu0XNCzNFdM5FVFNehH5SJ9l4HE9nsje2mskXR1dgMFwd1DYIIElS5jL3OjT2v00CG7kseVS');
 
-        function submitProfile() {
-            const name = document.getElementById('name').value;
-            const dob = document.getElementById('dob').value;
+        // Generate unique session ID
+        function generateSessionId() {
+            return 'sess_' + Date.now() + '_' + Math.random().toString(36).substr(2, 9);
+        }
+
+        // API Base URL
+        const API_BASE_URL = '/api';
+
+        // State - Restore from localStorage if available
+        let sessionId = localStorage.getItem('oracle_session_id') || generateSessionId();
+        let profile = JSON.parse(localStorage.getItem('oracle_profile')) || null;
+        
+        // Save session to localStorage
+        function saveSession() {
+            localStorage.setItem('oracle_session_id', sessionId);
+            if (profile) {
+                localStorage.setItem('oracle_profile', JSON.stringify(profile));
+            }
+            
+            // Save conversation history
+            if (chatMessages && chatMessages.children.length > 0) {
+                const messages = [];
+                chatMessages.querySelectorAll('.message').forEach(msg => {
+                    const role = msg.classList.contains('user') ? 'user' : 'assistant';
+                    const content = msg.querySelector('.message-content').textContent;
+                    messages.push({ role, content });
+                });
+                localStorage.setItem('oracle_chat_history', JSON.stringify(messages));
+            }
+        }
+        
+        // Clear session
+        function clearSession() {
+            localStorage.removeItem('oracle_session_id');
+            localStorage.removeItem('oracle_profile');
+            sessionId = generateSessionId();
+            profile = null;
+        }
+
+        // DOM Elements
+        const profileSection = document.getElementById('profileSection');
+        const chatSection = document.getElementById('chatSection');
+        const chatMessages = document.getElementById('chatMessages');
+        const messageInput = document.getElementById('messageInput');
+        const sendMessageBtn = document.getElementById('sendMessage');
+        const submitProfileBtn = document.getElementById('submitProfile');
+        const errorMessage = document.getElementById('errorMessage');
+        const typingIndicator = document.getElementById('typingIndicator');
+
+        // Show error message
+        function showError(message) {
+            errorMessage.textContent = message;
+            errorMessage.style.display = 'block';
+            setTimeout(() => {
+                errorMessage.style.display = 'none';
+            }, 5000);
+        }
+
+        // Add message to chat
+        function addMessage(content, type, saveToStorage = true) {
+            const messageDiv = document.createElement('div');
+            messageDiv.className = `message ${type}`;
+            messageDiv.innerHTML = `<div class="message-content">${content}</div>`;
+            chatMessages.appendChild(messageDiv);
+            chatMessages.scrollTop = chatMessages.scrollHeight;
+            
+            // Save to localStorage when adding new messages (not when restoring)
+            if (saveToStorage) {
+                saveSession();
+            }
+        }
+        
+        // Helper function to add message to DOM without saving
+        function addMessageToDOM(content, role, saveToStorage = false) {
+            addMessage(content, role, saveToStorage);
+        }
+
+        // Collect relationships
+        function collectRelationships() {
+            const relationships = [];
+            for (let i = 1; i <= 4; i++) {
+                const name = document.getElementById(`rel${i}_name`).value.trim();
+                const gender = document.getElementById(`rel${i}_gender`).value;
+                const birthDate = document.getElementById(`rel${i}_birthDate`).value;
+                
+                if (name && gender && birthDate) {
+                    relationships.push({ name, gender, birth_date: birthDate });
+                }
+            }
+            return relationships;
+        }
+
+        // Initialize profile
+        async function initProfile() {
+            const name = document.getElementById('name').value.trim();
             const gender = document.getElementById('gender').value;
-            const goals = document.getElementById('goals').value;
-            const challenges = document.getElementById('challenges').value;
-            const improvements = document.getElementById('improvements').value;
+            const birthDate = document.getElementById('birthDate').value;
 
-            if (!name || !dob || !gender) {
-                alert('Please fill in your name, date of birth, and gender!');
+            if (!name || !gender || !birthDate) {
+                showError('Please fill in all required fields');
                 return;
             }
 
-            // Generate session ID
-            sessionId = Date.now().toString();
-            userName = name;
+            // Collect optional profile data
+            const profileData = {
+                personality: document.getElementById('personality').value.trim(),
+                goals: document.getElementById('goals').value.trim(),
+                challenges: document.getElementById('challenges').value.trim(),
+                environment: document.getElementById('environment').value.trim(),
+                past: document.getElementById('past').value.trim()
+            };
 
             // Collect relationships
-            const relationships = [];
-            const relNames = document.querySelectorAll('.rel-name');
-            const relDobs = document.querySelectorAll('.rel-dob');
-            const relGenders = document.querySelectorAll('.rel-gender');
-            const relTypes = document.querySelectorAll('.rel-type');
+            const relationships = collectRelationships();
 
-            for (let i = 0; i < relNames.length; i++) {
-                if (relNames[i].value && relDobs[i].value) {
-                    relationships.push({
-                        name: relNames[i].value,
-                        dob: relDobs[i].value,
-                        gender: relGenders[i].value,
-                        type: relTypes[i].value
-                    });
-                }
-            }
+            submitProfileBtn.disabled = true;
+            submitProfileBtn.textContent = 'Connecting to Oracle...';
 
-            // Send to backend
-            fetch('/api/initialize', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    session_id: sessionId,
-                    name: name,
-                    dob: dob,
-                    gender: gender,
-                    goals: goals,
-                    challenges: challenges,
-                    improvements: improvements,
-                    relationships: relationships
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
+            try {
+                console.log('Attempting to connect to:', `${API_BASE_URL}/init-profile`);
+                
+                const response = await fetch(`${API_BASE_URL}/init-profile`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        name,
+                        gender,
+                        birth_date: birthDate,
+                        session_id: sessionId,
+                        profile_data: profileData,
+                        relationships: relationships
+                    })
+                });
+
+                console.log('Response status:', response.status);
+                
+                const data = await response.json();
+                console.log('Response data:', data);
+
                 if (data.success) {
-                    document.getElementById('profileForm').style.display = 'none';
-                    document.getElementById('chatSection').style.display = 'block';
-                    displayMessage('assistant', data.message);
+                    profile = { 
+                        name, 
+                        gender, 
+                        birthDate, 
+                        sessionId,
+                        natalType: data.natal_type,  // Save calculated type
+                        archetype: data.archetype,   // Save archetype
+                        profileData,
+                        relationships
+                    };
+                    
+                    // Save session to localStorage
+                    saveSession();
+                    
+                    // Switch to chat interface
+                    profileSection.style.display = 'none';
+                    chatSection.style.display = 'block';
+                    
+                    // Add greeting message
+                    addMessage(data.greeting, 'assistant');
+                    
+                    // Focus on input
+                    messageInput.focus();
                 } else {
-                    alert('Error: ' + data.error);
+                    showError(data.error || 'Failed to initialize profile');
+                    submitProfileBtn.disabled = false;
+                    submitProfileBtn.textContent = 'Begin Your Oracle Session';
                 }
-            })
-            .catch(error => {
+            } catch (error) {
                 console.error('Error:', error);
-                alert('Something went wrong. Please try again.');
-            });
+                showError(`Failed to connect: ${error.message}. Please try again.`);
+                submitProfileBtn.disabled = false;
+                submitProfileBtn.textContent = 'Begin Your Oracle Session';
+            }
         }
 
-        function sendMessage() {
-            const input = document.getElementById('messageInput');
-            const message = input.value.trim();
-
+        // Send message
+        async function sendMessage() {
+            const message = messageInput.value.trim();
+            
             if (!message) return;
 
-            // Display user message
-            displayMessage('user', message);
-            input.value = '';
+            // Add user message to chat
+            addMessage(message, 'user');
+            messageInput.value = '';
+            sendMessageBtn.disabled = true;
 
             // Show typing indicator
-            showTypingIndicator();
+            typingIndicator.style.display = 'block';
+            chatMessages.scrollTop = chatMessages.scrollHeight;
 
-            // Send to backend
-            fetch('/api/chat', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({
-                    session_id: sessionId,
-                    message: message
-                })
-            })
-            .then(response => response.json())
-            .then(data => {
-                hideTypingIndicator();
+            try {
+                console.log('Sending message to:', `${API_BASE_URL}/chat`);
+                
+                const response = await fetch(`${API_BASE_URL}/chat`, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    body: JSON.stringify({
+                        message,
+                        session_id: sessionId,
+                        profile: profile  // Send profile info to maintain context
+                    })
+                });
+
+                console.log('Response status:', response.status);
+                
+                const data = await response.json();
+                console.log('Response data:', data);
+
+                // Hide typing indicator
+                typingIndicator.style.display = 'none';
+
                 if (data.success) {
-                    displayMessage('assistant', data.message);
+                    addMessage(data.response, 'assistant');
+                } else if (data.error === 'PAYWALL_REACHED') {
+                    showPaywall(data);
                 } else {
-                    displayMessage('assistant', 'Sorry, something went wrong. Please try again.');
+                    addMessage('I apologize, but I encountered an error. Please try again.', 'assistant');
                 }
-            })
-            .catch(error => {
-                hideTypingIndicator();
+            } catch (error) {
                 console.error('Error:', error);
-                displayMessage('assistant', 'Sorry, something went wrong. Please try again.');
-            });
-        }
-
-        function displayMessage(type, content) {
-            const container = document.getElementById('chatContainer');
-            const messageDiv = document.createElement('div');
-            messageDiv.className = `message ${type}`;
-            messageDiv.innerHTML = `<div class="message-content">${content.replace(/\n/g, '<br>')}</div>`;
-            container.appendChild(messageDiv);
-            container.scrollTop = container.scrollHeight;
-        }
-
-        function showTypingIndicator() {
-            const container = document.getElementById('chatContainer');
-            const indicator = document.createElement('div');
-            indicator.id = 'typingIndicator';
-            indicator.className = 'message assistant';
-            indicator.innerHTML = `
-                <div class="typing-indicator">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </div>
-            `;
-            container.appendChild(indicator);
-            container.scrollTop = container.scrollHeight;
-        }
-
-        function hideTypingIndicator() {
-            const indicator = document.getElementById('typingIndicator');
-            if (indicator) {
-                indicator.remove();
+                typingIndicator.style.display = 'none';
+                addMessage(`I apologize, but I'm having trouble connecting: ${error.message}. Please try again.`, 'assistant');
             }
+
+            sendMessageBtn.disabled = false;
+            messageInput.focus();
         }
 
-        function resetChat() {
-            const container = document.getElementById('chatContainer');
-            container.innerHTML = '';
+        // Event listeners
+        
+        // Restore session on page load
+        window.addEventListener('load', async () => {
+            // Check if coming back from payment success
+            const urlParams = new URLSearchParams(window.location.search);
+            const paymentSuccess = urlParams.get('payment_success');
+            
+            if (profile) {
+                // Restore existing session
+                console.log('Restoring existing session');
+                
+                // Restore chat history if available
+                const savedHistory = localStorage.getItem('oracle_chat_history');
+                if (savedHistory) {
+                    try {
+                        const messages = JSON.parse(savedHistory);
+                        messages.forEach(msg => {
+                            addMessageToDOM(msg.content, msg.role, false);
+                        });
+                        console.log(`Restored ${messages.length} messages from history`);
+                    } catch (e) {
+                        console.error('Error restoring chat history:', e);
+                    }
+                }
+                
+                profileSection.style.display = 'none';
+                chatSection.style.display = 'block';
+                
+                // Add payment success message if coming back from payment
+                if (paymentSuccess === 'true') {
+                    addMessage('✨ Payment successful! You now have unlimited access to continue your journey of self-discovery.', 'assistant');
+                }
+                
+                messageInput.focus();
+            }
+        });
+        
+        submitProfileBtn.addEventListener('click', initProfile);
+
+        sendMessageBtn.addEventListener('click', sendMessage);
+
+        messageInput.addEventListener('keypress', (e) => {
+            if (e.key === 'Enter' && !sendMessageBtn.disabled) {
+                sendMessage();
+            }
+        });
+
+        // Prevent form submission
+        document.getElementById('birthDate').addEventListener('keypress', (e) => {
+            if (e.key === 'Enter') {
+                e.preventDefault();
+            }
+        });
+
+        // Show paywall modal
+        function showPaywall(data) {
+            const modal = document.getElementById('paywallModal');
+            const paywallBtn = document.getElementById('paywallBtn');
+            
+            modal.style.display = 'flex';
+            
+            paywallBtn.onclick = async () => {
+                try {
+                    paywallBtn.disabled = true;
+                    paywallBtn.textContent = 'Processing...';
+                    
+                    const response = await fetch(`${API_BASE_URL}/create-checkout-session`, {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                        },
+                        body: JSON.stringify({
+                            session_id: sessionId
+                        })
+                    });
+                    
+                    // Check HTTP status code
+                    if (!response.ok) {
+                        const errorData = await response.json();
+                        const errorMsg = errorData.error || 'Unable to process payment. Please try again.';
+                        console.error('Payment failed:', errorMsg);
+                        alert(`Payment error: ${errorMsg}`);
+                        paywallBtn.disabled = false;
+                        paywallBtn.textContent = 'Continue - $2.95';
+                        return;
+                    }
+                    
+                    const checkoutData = await response.json();
+                    
+                    // Verify URL exists before redirecting
+                    if (checkoutData.url) {
+                        // Redirect to Stripe Checkout
+                        window.location.href = checkoutData.url;
+                    } else {
+                        const errorMsg = checkoutData.error || 'Unable to process payment. Please try again.';
+                        console.error('Payment failed - no URL:', errorMsg);
+                        alert(`Payment error: ${errorMsg}. Please try again.`);
+                        paywallBtn.disabled = false;
+                        paywallBtn.textContent = 'Continue - $2.95';
+                    }
+                } catch (error) {
+                    console.error('Payment error:', error);
+                    alert(`Connection error: ${error.message}. Please try again.`);
+                    paywallBtn.disabled = false;
+                    paywallBtn.textContent = 'Continue - $2.95';
+                }
+            };
         }
     </script>
 </body>
