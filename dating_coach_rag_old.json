@@ -1,0 +1,227 @@
+{
+  "archetype_mappings": {
+    "SS": {
+      "female": {
+        "primary": "Mystic",
+        "description": "Soft, spiritual, deeply feminine, and more powerful than she knows. Creates emotional safety through presence and intuition."
+      },
+      "male": {
+        "primary": "Magician",
+        "description": "Intuitive, creative, seeing depths others miss. Mysterious and deeply perceptive."
+      }
+    },
+    "SD": {
+      "female": {
+        "primary": "Maiden",
+        "description": "Wild-hearted, honest, independent yet soft inside. Radically authentic and emotionally honest."
+      },
+      "male": {
+        "primary": "Knight",
+        "description": "Chivalrous, adventurous, the protector who still writes poetry. Warmly masculine and romantically devoted."
+      }
+    },
+    "DS": {
+      "female": {
+        "primary": "Queen",
+        "description": "Regal, refined, sophisticated, and demanding excellence. High standards and unapologetically commanding."
+      },
+      "male": {
+        "primary": "Warrior",
+        "description": "Sophisticated, accomplished, the inspiring role model. Refined skills and polished excellence."
+      }
+    },
+    "DD": {
+      "female": {
+        "primary": "Huntress",
+        "description": "Strong-bodied, strong-willed, and unapologetically fierce. Direct, purposeful, and powerfully feminine."
+      },
+      "male": {
+        "primary": "King",
+        "description": "The alpha who leads through vision, not domination. Natural authority and protective leadership."
+      }
+    }
+  },
+  "archetype_nicknames": {
+    "Mystic": ["the Dreamy One", "Spirit Queen", "the Mystery Woman"],
+    "Maiden": ["Wild Child", "Free Spirit", "the Real One"],
+    "Queen": ["Your Highness", "Boss Lady", "the Sophisticated One"],
+    "Huntress": ["Wild Woman", "Fierce Queen", "the Powerhouse"],
+    "Magician": ["the Mystery Man", "Deep Thinker", "the Intuitive One"],
+    "Knight": ["the Romantic", "Adventure King", "the Protector"],
+    "Warrior": ["the Accomplished One", "Polished Pro", "the Skilled One"],
+    "King": ["the Natural Leader", "Visionary", "the Alpha"]
+  },
+  "tone_protocol": {
+    "personality": {
+      "voice": "Like a witty, slightly irreverent older sibling who genuinely cares but won't sugarcoat things",
+      "attitude": "Funny, sharp, edgy, sometimes sarcastic, playful, occasionally flirty (but professional)",
+      "balance": "Inspirational and supportive, but willing to challenge and push when needed"
+    },
+    "language_patterns": {
+      "opening_phrases": [
+        "Alright, let's talk dating strategy",
+        "So here's the thing about attraction",
+        "Listen, I'm gonna be real with you",
+        "Okay, let's cut through the nonsense",
+        "Here's what you need to know"
+      ],
+      "playful_teasing": [
+        "You're overthinking this, babe",
+        "I mean this with love, but...",
+        "Not gonna lie, that's a rookie move",
+        "Come on, you know better than that"
+      ],
+      "encouragement": [
+        "You've got this, seriously",
+        "The right person will love this about you",
+        "Trust me, this is your superpower",
+        "Own it, because it's amazing"
+      ],
+      "banter_examples": [
+        "Flirting is like tennis - you have to return the serve",
+        "Dating isn't rocket science, but chemistry definitely is",
+        "The chase is fun, but don't forget to actually catch someone",
+        "Be mysterious, not confusing - there's a difference"
+      ]
+    },
+    "relationship_boundaries": {
+      "do_not": [
+        "Become a fantasy girlfriend/boyfriend",
+        "Encourage unhealthy obsession",
+        "Validate toxic behaviors",
+        "Support manipulative dating tactics"
+      ],
+      "do": [
+        "Support healthy self-confidence",
+        "Encourage authentic expression",
+        "Provide honest feedback",
+        "Maintain professional boundaries while being warm"
+      ]
+    }
+  },
+  "dating_topics": {
+    "first_impressions": {
+      "key_principles": [
+        "Authentic confidence beats fake confidence every time",
+        "Body language should match your archetype, not generic advice",
+        "First dates are about chemistry, not job interviews",
+        "Be interested, not just interesting"
+      ],
+      "archetype_specific_advice": {
+        "Mystic": "Let your natural stillness create intimacy. You don't need to be the loudest person in the room.",
+        "Maiden": "Your authenticity is your superpower. Don't hide your wild heart to seem 'more acceptable.'",
+        "Queen": "Your high standards are attractive, not intimidating. Own them without apologizing.",
+        "Huntress": "Your strength is magnetic, not threatening. Be direct without apology.",
+        "Magician": "Your depth and intuition are attractive, not 'weird.' Trust your perceptions.",
+        "Knight": "Your romantic nature is charming, not outdated. Plan adventures and be protective.",
+        "Warrior": "Your excellence is sexy, not arrogant. Showcase your skills with pride.",
+        "King": "Your natural leadership is magnetic. Lead through vision, not domination."
+      }
+    },
+    "conversation_chemistry": {
+      "principles": [
+        "Good conversation is about energy exchange, not saying the 'right' things",
+        "Ask questions that show you're actually listening",
+        "Share vulnerably but strategically - build connection, not trauma bonding",
+        "Silence isn't awkward if the chemistry is right"
+      ],
+      "conversation_starters": {
+        "playful": [
+          "What's your most controversial opinion about [topic]?",
+          "If you could ban one dating app trend, what would it be?",
+          "What's the most memorable first date you've been on (good or bad)?",
+          "What's something you're surprisingly good at?"
+        ],
+        "deep": [
+          "What's something you're passionate about that most people don't know?",
+          "What's a belief you've changed your mind about recently?",
+          "What's a dream you're scared to say out loud?",
+          "What makes you feel most alive?"
+        ]
+      }
+    },
+    "online_dating": {
+      "profile_tips": {
+        "photos": [
+          "Use photos that show your natural archetype energy",
+          "Include at least one full-body shot",
+          "Show your lifestyle - activities, hobbies, adventures",
+          "Avoid heavily filtered or deceptive photos"
+        ],
+        "bio": [
+          "Be specific about who you are, not generic lists",
+          "Show personality through humor or unique details",
+          "Mention what you're actually looking for",
+          "Keep it under 3 paragraphs - nobody's reading a novel"
+        ]
+      },
+      "messaging_strategy": {
+        "principles": [
+          "Match their energy, but don't be desperate",
+          "Ask genuine questions based on their profile",
+          "Move to meeting in person within a week or two",
+          "Don't ghost, but also don't waste time on bad matches"
+        ]
+      }
+    },
+    "physical_chemistry": {
+      "principles": [
+        "Physical chemistry is either there or it isn't - you can't force it",
+        "Attraction beyond gender is about neurochemical compatibility",
+        "Different archetypes create different kinds of chemistry",
+        "Sexual compatibility matters and it's okay to have preferences"
+      ],
+      "affinity_zones_reference": "Understanding affinity zones helps explain why some people light up your brain while others leave you cold"
+    }
+  },
+  "compatability_guidance": {
+    "principles": [
+      "Complementary archetypes often create the strongest chemistry",
+      "Similar archetypes create comfortable but potentially less exciting connections",
+      "Opposite archetypes can create intense polarity or complete mismatch",
+      "The best matches balance similarity with complementary differences"
+    ],
+    "archetype_compatibility": {
+      "Mystic": {
+        "best_match": ["Warrior", "King"],
+        "good_match": ["Magician", "Knight"],
+        "challenging_match": ["Huntress", "Queen"]
+      },
+      "Maiden": {
+        "best_match": ["Magician", "Warrior"],
+        "good_match": ["Knight", "King"],
+        "challenging_match": ["Queen", "Huntress"]
+      },
+      "Queen": {
+        "best_match": ["Knight", "King"],
+        "good_match": ["Warrior", "Magician"],
+        "challenging_match": ["Maiden", "Mystic"]
+      },
+      "Huntress": {
+        "best_match": ["King", "Warrior"],
+        "good_match": ["Knight", "Magician"],
+        "challenging_match": ["Mystic", "Maiden"]
+      },
+      "Magician": {
+        "best_match": ["Maiden", "Queen"],
+        "good_match": ["Mystic", "Huntress"],
+        "challenging_match": ["King", "Warrior"]
+      },
+      "Knight": {
+        "best_match": ["Queen", "Maiden"],
+        "good_match": ["Mystic", "Huntress"],
+        "challenging_match": ["Magician", "Warrior"]
+      },
+      "Warrior": {
+        "best_match": ["Mystic", "Huntress"],
+        "good_match": ["Queen", "Maiden"],
+        "challenging_match": ["Knight", "Magician"]
+      },
+      "King": {
+        "best_match": ["Huntress", "Mystic"],
+        "good_match": ["Queen", "Maiden"],
+        "challenging_match": ["Magician", "Knight"]
+      }
+    }
+  }
+}

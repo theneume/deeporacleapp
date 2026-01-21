@@ -1,0 +1,760 @@
+{
+  "archetype_mappings": {
+    "SS": {
+      "female": {
+        "primary": "Mystic",
+        "description": "Soft, spiritual, deeply feminine, and more powerful than she knows. Creates emotional safety through presence and intuition.",
+        "dating_style": "Seeks deep soulful connections, values emotional resonance and authenticity",
+        "strengths": [
+          "Intuition",
+          "Emotional depth",
+          "Authenticity",
+          "Spiritual connection"
+        ],
+        "challenges": [
+          "Taking action",
+          "Setting boundaries",
+          "Practical dating steps"
+        ],
+        "neurochemical_profile": {
+          "serotonin": "Very High",
+          "dopamine": "Very High",
+          "description": "Highly attuned to emotional and spiritual connections. Serotonin dominance creates deep emotional stability and intuition, while elevated dopamine fuels spiritual curiosity and meaningful connections. This combination makes Mystics naturally empathetic and deeply connected to the emotional currents of relationships.",
+          "relationship_insights": "Your high serotonin gives you natural emotional intelligence - you can sense what others are feeling before they say it. This makes you incredibly attuned to bonding chemicals like oxytocin. When you feel safe and connected, you naturally create that warm, secure feeling that makes people want to stay close.",
+          "dating_implications": "You're drawn to depth over surface-level attraction. Your neurochemistry makes you sensitive to emotional authenticity - you can feel when someone's being fake. This is a superpower in dating because it protects you from shallow connections, though it can sometimes make you feel overwhelmed in the early, casual stages."
+        }
+      },
+      "male": {
+        "primary": "Magician",
+        "description": "Intuitive, creative, seeing depths others miss. Mysterious and deeply perceptive.",
+        "dating_style": "Seeks transformation and depth, wants profound understanding",
+        "strengths": [
+          "Emotional intelligence",
+          "Intuition",
+          "Insight",
+          "Depth"
+        ],
+        "challenges": [
+          "Taking initiative",
+          "Directness",
+          "Balancing depth with action"
+        ],
+        "neurochemical_profile": {
+          "serotonin": "Very High",
+          "dopamine": "Very High",
+          "description": "Deeply intuitive and emotionally perceptive. High serotonin provides exceptional emotional stability and pattern recognition, while elevated dopamine drives creative thinking and transformational insights. This neurochemical combo makes Magicians natural at understanding the hidden dynamics of attraction and connection.",
+          "relationship_insights": "Your high serotonin gives you unusual emotional intelligence - you pick up on subtle signals others miss. This makes you incredibly aware of the chemistry between people. You can sense when oxytocin (the bonding chemical) is flowing naturally, and you're drawn to relationships with that deep, secure feeling.",
+          "dating_implications": "You're not looking for surface-level attraction - you want to understand someone completely. Your neurochemistry makes you sensitive to authenticity and depth. This is powerful because you can see through games and pretense, but it can also make early dating stages feel shallow if you're expecting immediate soul-connection."
+        }
+      }
+    },
+    "SD": {
+      "female": {
+        "primary": "Maiden",
+        "description": "Wild-hearted, honest, independent yet soft inside. Radically authentic and emotionally honest.",
+        "dating_style": "Brings warmth and nurturing, naturally cares for others",
+        "strengths": [
+          "Authenticity",
+          "Nurturing",
+          "Emotional honesty",
+          "Warmth"
+        ],
+        "challenges": [
+          "Setting boundaries",
+          "Self-care",
+          "Not over-giving"
+        ],
+        "neurochemical_profile": {
+          "serotonin": "High",
+          "dopamine": "Moderate",
+          "description": "Warm, nurturing, and authentically caring. High serotonin creates natural warmth and the desire to nurture, while moderate dopamine keeps you grounded and focused on genuine connection rather than constant excitement seeking. This makes Maidens naturally supportive and deeply caring in relationships.",
+          "relationship_insights": "Your high serotonin gives you that natural warmth people are drawn to - you're the person others feel safe around. This connects beautifully with oxytocin, the bonding chemical that creates that secure, loved feeling. When you care for someone, you naturally help them feel safe and connected.",
+          "dating_implications": "You're drawn to authenticity and real connection, not games or manipulation. Your neurochemistry makes you naturally nurturing, which is incredibly attractive to people seeking genuine care and warmth. The challenge is balancing your giving nature with maintaining healthy boundaries so you don't over-invest before someone has earned that level of care."
+        }
+      },
+      "male": {
+        "primary": "Knight",
+        "description": "Chivalrous, adventurous, the protector who still writes poetry. Warmly masculine and romantically devoted.",
+        "dating_style": "Values honor and protection, wants to be the provider and protector",
+        "strengths": [
+          "Chivalry",
+          "Romance",
+          "Adventure",
+          "Protection"
+        ],
+        "challenges": [
+          "Modern dating dynamics",
+          "Being controlling",
+          "Balancing protection with respect"
+        ],
+        "neurochemical_profile": {
+          "serotonin": "High",
+          "dopamine": "Moderate",
+          "description": "Naturally protective and romantically inclined. High serotonin provides emotional stability and the protective instinct, while balanced dopamine keeps you adventurous but grounded. This creates Knights who are deeply devoted and create secure, stable relationships while still bringing excitement and romance.",
+          "relationship_insights": "Your high serotonin gives you that natural protective instinct and emotional stability - you're the rock others lean on. This connects powerfully with oxytocin, the bonding chemical that creates deep trust. When you make someone feel safe and protected, you naturally trigger that bonding response that makes relationships last.",
+          "dating_implications": "You're drawn to relationships where you can be the protector and provider, but this needs to be balanced with modern partnership dynamics. Your neurochemistry makes you naturally romantic and devoted, which is incredibly attractive. The key is channeling your protective nature into support rather than control, creating the kind of security that makes people want to stay close."
+        }
+      }
+    },
+    "DS": {
+      "female": {
+        "primary": "Queen",
+        "description": "Regal, refined, sophisticated, and demanding excellence. High standards and unapologetically commanding.",
+        "dating_style": "Has high standards, discerns quickly, won't settle for less",
+        "strengths": [
+          "Standards",
+          "Discernment",
+          "Sophistication",
+          "Leadership"
+        ],
+        "challenges": [
+          "Being open",
+          "Not being too critical",
+          "Finding equals"
+        ],
+        "neurochemical_profile": {
+          "serotonin": "Moderate",
+          "dopamine": "High",
+          "description": "Driven by excellence and achievement. Moderate serotonin provides enough emotional stability for refined decision-making, while high dopamine fuels ambition, drive, and the pursuit of the best. This creates Queens who are naturally discerning and won't settle for anything less than they deserve.",
+          "relationship_insights": "Your high dopamine gives you that drive and ambition - you're constantly moving toward the next level. In dating, this means you're attracted to excellence and accomplishment. While oxytocin (the bonding chemical) is important to you, you need more than just warmth - you need someone who can match your standards and drive.",
+          "dating_implications": "You have high standards because your neurochemistry is wired for excellence and achievement. This is actually a superpower in dating because it protects you from settling for less than you deserve. The key is learning to discern between someone who meets your standards and someone who's simply performing excellence for you."
+        }
+      },
+      "male": {
+        "primary": "Warrior",
+        "description": "Sophisticated, accomplished, the inspiring role model. Refined skills and polished excellence.",
+        "dating_style": "Confident and bold, seeks challenge and conquest in dating",
+        "strengths": [
+          "Confidence",
+          "Ambition",
+          "Challenge",
+          "Excellence"
+        ],
+        "challenges": [
+          "Emotional depth",
+          "Not being competitive",
+          "Vulnerability"
+        ],
+        "neurochemical_profile": {
+          "serotonin": "Moderate",
+          "dopamine": "High",
+          "description": "Achievement-focused and driven by challenge. Moderate serotonin provides emotional stability, while high dopamine fuels ambition, confidence, and the drive to conquer. This creates Warriors who are naturally accomplished and attracted to challenge and excellence.",
+          "relationship_insights": "Your high dopamine gives you that competitive drive and confidence - you're always pushing yourself to be better. In dating, this means you're attracted to challenge and accomplishment. You need someone who can match your energy and push you to grow, not just someone to settle down with comfortably.",
+          "dating_implications": "Your neurochemistry is wired for challenge and achievement, which makes you naturally confident and attractive. You don't want easy - you want someone who challenges you. The key is balancing that competitive drive with genuine emotional connection, creating a relationship where you grow together rather than compete."
+        }
+      }
+    },
+    "DD": {
+      "female": {
+        "primary": "Huntress",
+        "description": "Strong-bodied, strong-willed, and unapologetically fierce. Direct, purposeful, and powerfully feminine.",
+        "dating_style": "Driven and independent, knows what she wants and pursues it",
+        "strengths": [
+          "Ambition",
+          "Independence",
+          "Directness",
+          "Strength"
+        ],
+        "challenges": [
+          "Making space for connection",
+          "Vulnerability",
+          "Balancing goals with relationships"
+        ],
+        "neurochemical_profile": {
+          "serotonin": "Moderate",
+          "dopamine": "Very High",
+          "description": "Highly driven and action-oriented. Moderate serotonin provides emotional foundation, while very high dopamine fuels intense drive, ambition, and goal achievement. This creates Huntresses who are naturally powerful and pursue what they want with determination.",
+          "relationship_insights": "Your very high dopamine gives you that intense drive and energy - you're always moving forward, always pursuing. In dating, this means you go after what you want directly. While oxytocin bonding is important, you need the dopamine rush of pursuit and achievement too.",
+          "dating_implications": "Your neurochemistry is wired for action and achievement, which makes you incredibly direct and powerful in dating. You don't play games - you pursue what you want. The challenge is creating space for emotional connection and vulnerability, balancing your drive with the softer side of relationships."
+        }
+      },
+      "male": {
+        "primary": "King",
+        "description": "The alpha who leads through vision, not domination. Natural authority and protective leadership.",
+        "dating_style": "Decisive and results-oriented, natural leader in dating",
+        "strengths": [
+          "Leadership",
+          "Decisiveness",
+          "Vision",
+          "Authority"
+        ],
+        "challenges": [
+          "Emotional connection",
+          "Not being dominating",
+          "Listening"
+        ],
+        "neurochemical_profile": {
+          "serotonin": "Moderate",
+          "dopamine": "Very High",
+          "description": "Natural leadership through vision and authority. Moderate serotonin provides emotional stability, while very high dopamine drives leadership, decisiveness, and the ability to execute vision. This creates Kings who are naturally commanding and results-oriented.",
+          "relationship_insights": "Your very high dopamine gives you that natural leadership and decisiveness - you're comfortable taking charge and making things happen. In dating, this means you're decisive and results-oriented. You need someone who respects your authority but isn't intimidated by it.",
+          "dating_implications": "Your neurochemistry is wired for leadership and action, which makes you naturally commanding and attractive to people who want strong direction. You lead by vision, not domination, which is powerful when done right. The key is balancing your decisiveness with genuine emotional listening, creating a relationship where you lead with partnership rather than control."
+        }
+      }
+    }
+  },
+  "archetype_nicknames": {
+    "Mystic": [
+      "the Dreamy One",
+      "Spirit Queen",
+      "the Mystery Woman"
+    ],
+    "Maiden": [
+      "Wild Child",
+      "Free Spirit",
+      "the Real One"
+    ],
+    "Queen": [
+      "Your Highness",
+      "Boss Lady",
+      "the Sophisticated One"
+    ],
+    "Huntress": [
+      "Wild Woman",
+      "Fierce Queen",
+      "the Powerhouse"
+    ],
+    "Magician": [
+      "the Mystery Man",
+      "Deep Thinker",
+      "the Intuitive One"
+    ],
+    "Knight": [
+      "the Romantic",
+      "Adventure King",
+      "the Protector"
+    ],
+    "Warrior": [
+      "the Accomplished One",
+      "Polished Pro",
+      "the Skilled One"
+    ],
+    "King": [
+      "the Natural Leader",
+      "Visionary",
+      "the Alpha"
+    ]
+  },
+  "tone_protocol": {
+    "personality": {
+      "voice": "Like a knowledgeable friend who genuinely understands human psychology and connection",
+      "attitude": "Warm, approachable, occasionally naturally funny, always helpful",
+      "balance": "Supportive while being direct, authentic without trying too hard"
+    },
+    "communication_rules": {
+      "format": "Always use narrative paragraphs, never bullets or asterisks",
+      "pacing": "Vary sentence structure for natural rhythm",
+      "emotion": "Show genuine care and understanding, appropriate emotional resonance",
+      "humor": "Light and situational, never forced or performative",
+      "language": "Contemporary but authentic, no forced slang"
+    }
+  },
+  "archetype_communication_styles": {
+    "Mystic": {
+      "approach": "Deep, thoughtful, affirming of spiritual nature",
+      "language": "Intuitive, meaningful, soulful",
+      "dating_advice_focus": "Trusting instincts, taking practical action for spiritual desires",
+      "texting_style": "Thoughtful, meaningful, not rushed, emotionally connected"
+    },
+    "Maiden": {
+      "approach": "Gentle, supportive, empowering",
+      "language": "Warm, caring, authentic, encouraging",
+      "dating_advice_focus": "Balancing giving with receiving, setting healthy boundaries",
+      "texting_style": "Warm, responsive, caring, authentic"
+    },
+    "Queen": {
+      "approach": "Respectful, sophisticated, confident",
+      "language": "Refined, discerning, high standards",
+      "dating_advice_focus": "Affirming standards while remaining open to genuine connection",
+      "texting_style": "Confident, selective, quality over quantity"
+    },
+    "Huntress": {
+      "approach": "Direct, confident, celebratory",
+      "language": "Strong, purposeful, empowering",
+      "dating_advice_focus": "Validating ambition while creating space for connection",
+      "texting_style": "Direct, confident, purposeful, efficient"
+    },
+    "Magician": {
+      "approach": "Insightful, deep, transformative",
+      "language": "Intuitive, perceptive, meaningful",
+      "dating_advice_focus": "Developing emotional intelligence, trusting intuitive understanding",
+      "texting_style": "Perceptive, meaningful, shows insight"
+    },
+    "Knight": {
+      "approach": "Encouraging, purposeful, respectful",
+      "language": "Chivalrous, romantic, protective, purposeful",
+      "dating_advice_focus": "Channeling protective energy into healthy, respectful pursuit",
+      "texting_style": "Romantic, thoughtful, planning-oriented, caring"
+    },
+    "Warrior": {
+      "approach": "Confident, challenging, affirming",
+      "language": "Bold, confident, achievement-oriented",
+      "dating_advice_focus": "Channeling energy into meaningful pursuit, developing emotional depth",
+      "texting_style": "Confident, bold, achievement-focused, direct"
+    },
+    "King": {
+      "approach": "Respectful, confident, aligned with excellence",
+      "language": "Commanding, decisive, visionary, authoritative",
+      "dating_advice_focus": "Balancing command with genuine emotional connection",
+      "texting_style": "Decisive, leader-oriented, confident, purposeful"
+    }
+  },
+  "chemistry_building": {
+    "principles": [
+      "Chemistry is created through emotional oscillation - tension and release",
+      "Sensory language creates emotional immersion and connection",
+      "Shared future experiences build attraction and anticipation",
+      "Playful challenge creates flirtatious tension without being cheesy",
+      "Contrast and complexity create depth and safety in connection"
+    ],
+    "techniques": {
+      "sensory_immersion": "Use vivid sensory language (taste, touch, smell, sound) to create emotional immersion",
+      "future_pacing": "Paint pictures of shared future experiences, linking positive emotions to potential connection",
+      "playful_challenge": "Subtly create challenge that invites qualification without being manipulative",
+      "contrast_language": "Explore dualities and psychological complexity to create depth",
+      "suggestive_questions": "Stimulate imagination and curiosity to build intrigue"
+    }
+  },
+  "texting_strategies": {
+    "general_principles": [
+      "Keep messages concise and intriguing",
+      "Use open-ended questions to encourage response",
+      "Create playful back-and-forth without games",
+      "Leave things unsaid to generate curiosity",
+      "Match energy but don't mirror desperately"
+    ],
+    "archetype_specific": {
+      "Mystic": "Send thoughtful messages that show you're thinking deeply about the connection",
+      "Maiden": "Be warm and caring, show genuine interest and nurturing energy",
+      "Queen": "Be selective but engaging, maintain standards while showing interest",
+      "Huntress": "Be direct and confident, know what you want and communicate it",
+      "Magician": "Show insight and perception, demonstrate you understand them",
+      "Knight": "Plan thoughtful interactions, show romantic and protective energy",
+      "Warrior": "Be bold and confident, showcase your excellence and ambition",
+      "King": "Lead the interaction, be decisive and show your vision"
+    }
+  },
+  "conversation_starters": {
+    "contextual": [
+      "Comment on something specific from their profile or situation",
+      "Reference shared interests or experiences",
+      "Ask about their passions or what excites them",
+      "Make a genuine observation about something around you"
+    ],
+    "playful": [
+      "What's your most controversial opinion about something we both care about?",
+      "If you could ban one dating trend, what would it be?",
+      "What's the most memorable dating experience you've had?",
+      "What's something you're surprisingly good at?"
+    ],
+    "deep": [
+      "What's something you're passionate about that most people don't know?",
+      "What's a belief you've changed your mind about recently?",
+      "What makes you feel most alive?",
+      "What's something you're working toward that excites you?"
+    ],
+    "saucy_and_playful": [
+      "What's the most trouble you've ever gotten into that was totally worth it?",
+      "If we were sneaking out for an adventure tonight, where would we end up?",
+      "What's something about you that would surprise people who think they have you figured out?",
+      "What's your definition of the perfect kind of trouble?",
+      "If you could design the perfect evening that leads to something unexpected, what would it look like?",
+      "What's the most spontaneous thing you've done that led to an amazing story?",
+      "When was the last time you did something just because it felt right, not because it made sense?",
+      "What kind of energy do you want to attract more of in your life right now?"
+    ],
+    "flirty_and_intriguing": [
+      "I have this feeling that you're the kind of person who knows exactly what they want - am I right?",
+      "What's something about you that most people miss at first, but once they see it, they're captivated?",
+      "If I were to read your mind right now, what would I discover that you're not saying out loud?",
+      "What's the most attractive quality in someone that you haven't admitted to yourself yet?",
+      "When was the last time you felt that spark where you just knew something special was happening?",
+      "What kind of connection do you think would actually excite you right now?",
+      "If we were playing a game of truth, what's the first thing you'd want to know about me?",
+      "What's your secret weapon when it comes to creating chemistry with someone?"
+    ]
+  },
+  "dating_advice_by_gender": {
+    "men": {
+      "focus_areas": [
+        "Authentic confidence over performance",
+        "Respectful pursuit that shows genuine care",
+        "Emotional intelligence and understanding",
+        "Taking initiative without being overwhelming",
+        "Reading signals and respecting boundaries"
+      ],
+      "common_mistakes": [
+        "Trying too hard to be impressive",
+        "Not listening actively",
+        "Being too aggressive or too passive",
+        "Ignoring signals and boundaries",
+        "Making it all about yourself"
+      ]
+    },
+    "women": {
+      "focus_areas": [
+        "Self-worth and knowing your value",
+        "Healthy boundaries and standards",
+        "Attracting the right energy, not chasing",
+        "Authentic expression over playing games",
+        "Emotional intelligence in reading situations"
+      ],
+      "common_mistakes": [
+        "Settling for less than you deserve",
+        "Over-giving and losing yourself",
+        "Playing games or being unavailable",
+        "Ignoring red flags",
+        "Being too critical or closed off"
+      ]
+    }
+  },
+  "attraction_principles": {
+    "authentic_confidence": "True confidence comes from self-acceptance, not performance",
+    "emotional_connection": "Attraction is built through genuine emotional exchange",
+    "polarity": "Masculine and feminine energies create natural attraction when authentic",
+    "vulnerability": "Being appropriately vulnerable creates deeper connection",
+    "boundaries": "Healthy boundaries are attractive and create respect"
+  },
+  "nlp_techniques": {
+    "framing": "Shape how situations are presented to influence perception positively",
+    "future_pacing": "Help users visualize successful dating outcomes",
+    "embedded_suggestions": "Subtly incorporate empowering suggestions in natural language",
+    "pacing_and_leading": "Match their state then gently guide toward positive change",
+    "embedded_commands": {
+      "purpose": "Subtly influence perceptions and feelings through embedded suggestions",
+      "examples": [
+        {
+          "outcome": "Creating desire and attraction",
+          "pattern": "Have you ever felt that instant connection where you just *knew* there was something special?",
+          "usage": "Introduce the concept of chemistry and attraction naturally"
+        },
+        {
+          "outcome": "Building safety and trust",
+          "pattern": "When you're with someone who makes you feel completely safe, isn't it amazing how everything else just fades away?",
+          "usage": "Create comfort and emotional security"
+        },
+        {
+          "outcome": "Creating fascination and intrigue",
+          "pattern": "Do you remember a time when someone was so fascinating that you lost track of time completely?",
+          "usage": "Build captivation and deep interest"
+        },
+        {
+          "outcome": "Encouraging action and initiative",
+          "pattern": "When you finally decide to go after what you want, it can feel absolutely exhilarating, don't you think?",
+          "usage": "Motivate taking action on attraction"
+        },
+        {
+          "outcome": "Creating longing and craving",
+          "pattern": "Do you ever crave more of those moments that make you feel truly alive and present?",
+          "usage": "Build desire for continued connection"
+        },
+        {
+          "outcome": "Sensory connection and pleasure",
+          "pattern": "Your body is going to feel amazing when you allow yourself those moments of true enjoyment and surrender",
+          "usage": "Connect physical sensation to emotional experience"
+        }
+      ],
+      "archetype_specific": {
+        "Mystic": "When you allow yourself to be truly seen and understood, something magical unfolds naturally",
+        "Maiden": "Your authentic warmth creates the kind of connection that people remember for years",
+        "Queen": "When someone meets your standards, it's because they recognize your true worth",
+        "Huntress": "Your confidence is magnetic - it draws exactly the right kind of energy toward you",
+        "Magician": "Your intuition about people leads to connections that transform both of you",
+        "Knight": "Your protective nature makes people feel cherished and deeply cared for",
+        "Warrior": "Your strength combined with vulnerability creates the most powerful kind of attraction",
+        "King": "Your leadership naturally draws people who want to be part of something greater"
+      }
+    }
+  },
+  "cultural_avatar_guidelines": {
+    "usage": "Reference celebrities naturally when they illustrate relevant qualities",
+    "examples": [
+      "Reference confidence when discussing authenticity",
+      "Use examples of good communication skills",
+      "Illustrate healthy relationship dynamics",
+      "Show examples of successful dating approaches"
+    ],
+    "avoid": [
+      "Dropping names just for effect",
+      "Forced or irrelevant celebrity references",
+      "Overusing pop culture to seem current",
+      "Comparing users unfavorably to celebrities"
+    ]
+  },
+  "seductive_language_patterns": {
+    "Mystic": {
+      "approach": "Deep, soulful connection with spiritual and emotional depth",
+      "patterns": [
+        "When you allow yourself to be truly seen, magic happens",
+        "There's something mysterious about you that draws people in",
+        "Your intuition knows exactly what you need",
+        "The deeper you go, the more beautiful it becomes"
+      ],
+      "texting_examples": [
+        "I was thinking about what you said earlier... there's something so profound about how you see the world",
+        "Have you ever felt that connection where you just know someone understands you on a different level?",
+        "Your energy has this way of making everything feel more meaningful"
+      ]
+    },
+    "Maiden": {
+      "approach": "Warm, authentic, emotionally honest connection",
+      "patterns": [
+        "Your authenticity is incredibly attractive",
+        "When you're real, you create the kind of connection people can't forget",
+        "Your warmth draws the right kind of energy toward you",
+        "Being genuine about what you want is your superpower"
+      ],
+      "texting_examples": [
+        "I love how real you are - that's rare and honestly so attractive",
+        "You know what I appreciate about you? You don't play games",
+        "Your authenticity just makes me want to be more open with you"
+      ]
+    },
+    "Queen": {
+      "approach": "High standards, sophisticated, commanding respect and admiration",
+      "patterns": [
+        "When someone meets your standards, they've proven their worth",
+        "Your discernment is a sign of your value",
+        "The right person will rise to meet your expectations",
+        "Your standards aren't intimidating - they're a filter for quality"
+      ],
+      "texting_examples": [
+        "I respect that you don't settle - that's exactly right",
+        "You know what you want and you're not afraid to ask for it - I love that",
+        "Your standards are part of what makes you so compelling"
+      ]
+    },
+    "Huntress": {
+      "approach": "Confident, direct, powerful feminine energy",
+      "patterns": [
+        "Your confidence is absolutely magnetic",
+        "Going after what you want is incredibly attractive",
+        "Your strength draws the right kind of person toward you",
+        "Being direct about your desires is a form of power"
+      ],
+      "texting_examples": [
+        "Your confidence is seriously captivating",
+        "I love that you know what you want and go for it",
+        "There's something so attractive about your directness"
+      ]
+    },
+    "Magician": {
+      "approach": "Deep understanding, transformation, emotional intelligence",
+      "patterns": [
+        "Your ability to see beneath the surface is rare and valuable",
+        "When you understand people deeply, you create profound connections",
+        "Your intuition about connection is powerful",
+        "Emotional intelligence is the ultimate form of strength"
+      ],
+      "texting_examples": [
+        "You have this way of understanding things that most people miss",
+        "Your insight is incredibly attractive",
+        "I love how you see beneath the surface"
+      ]
+    },
+    "Knight": {
+      "approach": "Protective, chivalrous, warm masculinity",
+      "patterns": [
+        "Making someone feel safe is the foundation of real attraction",
+        "Your protective nature is incredibly appealing when done with respect",
+        "Being able to provide and care for someone shows real strength",
+        "Chivalry combined with modern understanding is powerful"
+      ],
+      "texting_examples": [
+        "I love that you care so deeply about making people feel safe and valued",
+        "Your protective energy is incredibly attractive",
+        "There's something so appealing about how you show up for people"
+      ]
+    },
+    "Warrior": {
+      "approach": "Confident, bold, achievement-oriented with emotional depth",
+      "patterns": [
+        "Your confidence and drive are magnetic",
+        "Excellence attracts excellence - that's just how it works",
+        "Your ambition combined with emotional awareness is unstoppable",
+        "Winning and being deeply connected aren't mutually exclusive"
+      ],
+      "texting_examples": [
+        "Your confidence is seriously impressive",
+        "I love that you're driven but also emotionally intelligent",
+        "Your ambition is attractive, but what's even more attractive is your depth"
+      ]
+    },
+    "King": {
+      "approach": "Natural leadership, vision, authority with emotional connection",
+      "patterns": [
+        "Leading with vision and empathy is incredibly compelling",
+        "Your natural authority draws the right people toward you",
+        "True leadership includes being emotionally connected",
+        "Your vision creates a sense of purpose that's magnetic"
+      ],
+      "texting_examples": [
+        "Your leadership style is incredibly attractive",
+        "I love how you can be decisive while still being emotionally connected",
+        "Your vision draws people in - that's powerful"
+      ]
+    }
+  },
+  "advanced_seduction_techniques": {
+    "description": "Subtle techniques for building attraction and chemistry naturally",
+    "techniques": [
+      {
+        "name": "Future Pacing",
+        "description": "Help them imagine future positive experiences with you",
+        "example": "Imagine how it would feel to be with someone who really gets you - that excitement, that comfort, that sense of being understood"
+      },
+      {
+        "name": "Presuppositions",
+        "description": "Assume something is already true to influence perception",
+        "example": "When you realize how much we have in common, it's going to be fascinating to see where this goes"
+      },
+      {
+        "name": "Double Bind",
+        "description": "Offer choices that both lead to the desired outcome",
+        "example": "Do you want to discover this connection through conversation, or would you rather let it unfold naturally?"
+      },
+      {
+        "name": "Embedded Suggestions",
+        "description": "Hide commands within natural conversation",
+        "example": "Have you ever noticed how sometimes you just *know* when something is right?"
+      },
+      {
+        "name": "Sensory Language",
+        "description": "Use words that engage the senses",
+        "example": "The chemistry between you two would feel electric, like that moment before a storm"
+      }
+    ],
+    "ethical_note": "These techniques should be used to create genuine connection and mutual attraction, never for manipulation. Always prioritize consent and authenticity."
+  },
+  "neurochemistry_and_attraction": {
+    "core_concepts": {
+      "serotonin": {
+        "role": "Emotional stability, intuition, nurturing, social bonding",
+        "high_levels_indicate": "Emotional intelligence, natural warmth, protective instincts, deep intuition, spiritual connection",
+        "in_dating": "Creates emotional safety, enables deep bonding, supports long-term relationship stability, enhances trust",
+        "attraction_factor": "People are naturally drawn to serotonin-dominant individuals because they create feelings of safety and security"
+      },
+      "dopamine": {
+        "role": "Drive, ambition, excitement, pursuit, reward-seeking",
+        "high_levels_indicate": "Confidence, leadership, adventurousness, goal-orientation, competitive drive",
+        "in_dating": "Creates excitement and anticipation, fuels pursuit and courtship, supports ambition-driven attraction",
+        "attraction_factor": "People are naturally drawn to dopamine-dominant individuals because they project confidence and excitement"
+      },
+      "oxytocin": {
+        "role": "Bonding, trust, attachment, intimacy",
+        "how_it_works": "Released during positive social interactions, physical touch, and moments of trust",
+        "in_dating": "The chemical that creates the feeling of falling in love, deepens emotional bonds, makes people want to stay close",
+        "gender_differences": "Women typically experience stronger oxytocin responses to emotional trust and conversation. Men often need physical touch or shared experiences to trigger oxytocin release.",
+        "building_it": "Eye contact, shared vulnerability, physical touch, genuine compliments, emotional availability, consistency"
+      }
+    },
+    "neurochemical_combinations": {
+      "high_serotonin_high_dopamine": {
+        "archetypes": [
+          "Mystic",
+          "Magician"
+        ],
+        "description": "The rare combination of deep emotional intelligence and driven ambition",
+        "attraction_power": "Incredibly magnetic because they combine emotional depth with purpose and drive",
+        "dating_advantage": "Can create both deep emotional connection and exciting momentum in relationships",
+        "challenges": "Can be overwhelming for people seeking simplicity; depth may scare off casual daters"
+      },
+      "high_serotonin_moderate_dopamine": {
+        "archetypes": [
+          "Maiden",
+          "Knight"
+        ],
+        "description": "Warm, nurturing, and romantically inclined",
+        "attraction_power": "People feel safe and cared for around them, naturally creating desire for closeness",
+        "dating_advantage": "Excellent at building long-term relationships and creating emotional security",
+        "challenges": "May over-give or settle for less than they deserve; need to balance nurturing with self-worth"
+      },
+      "moderate_serotonin_high_dopamine": {
+        "archetypes": [
+          "Queen",
+          "Warrior"
+        ],
+        "description": "Driven by excellence and achievement with emotional stability",
+        "attraction_power": "Project confidence and high standards, attracting people who want to be with someone exceptional",
+        "dating_advantage": "Won't settle for less than they deserve; naturally discerning about partners",
+        "challenges": "May be perceived as intimidating or too critical; need to balance standards with openness"
+      },
+      "moderate_serotonin_very_high_dopamine": {
+        "archetypes": [
+          "Huntress",
+          "King"
+        ],
+        "description": "Intense drive and natural leadership",
+        "attraction_power": "Command attention and respect, naturally attracting people drawn to strength and direction",
+        "dating_advantage": "Decisive and action-oriented in dating; go after what they want",
+        "challenges": "May struggle with vulnerability and emotional connection; need to balance strength with openness"
+      }
+    },
+    "attraction_neuroscience": {
+      "initial_spark": {
+        "dopamine_role": "The excitement and anticipation of potential connection - the 'chase' energy",
+        "serotonin_role": "Feeling safe and intrigued by someone's emotional intelligence and stability",
+        "timing": "Dopamine often spikes first (excitement), with serotonin building the foundation for lasting attraction"
+      },
+      "deepening_connection": {
+        "oxytocin_building": "Moments of vulnerability, trust, and physical intimacy trigger oxytocin release",
+        "neurochemical_match": "Compatible neurochemistry means both people get what they need - excitement and security",
+        "bonding_patterns": "Consistency and emotional safety build oxytocin over time, creating lasting attachment"
+      },
+      "long_term_love": {
+        "serotonin_stability": "Long-term relationships require serotonin's emotional stability and intuition",
+        "dopamine_maintenance": "Keeping the spark alive requires ongoing dopamine through shared goals and growth",
+        "oxytocin_ongoing": "Regular positive interactions and physical touch maintain oxytocin bonding",
+        "the_balance": "Healthy long-term love balances all three chemicals in sustainable ways"
+      }
+    },
+    "gender_neuroscience_insights": {
+      "men": {
+        "typical_neurochemistry": "Often dopamine-driven for pursuit, but need oxytocin triggers through physical touch, shared activities, and feeling trusted and respected",
+        "oxytocin_triggers": "Physical touch, eye contact during intimate conversation, feeling needed and capable, shared achievements, genuine appreciation",
+        "serotonin_needs": "Men with high serotonin need to feel they can protect and provide, even in modern partnership dynamics",
+        "attraction_patterns": "Often respond well to directness and confidence, but need emotional safety to open up vulnerably",
+        "dating_tips": "Men often bond through doing things together and feeling competent. Shared activities, genuine compliments about their capabilities, and giving them space to pursue can build deep attraction."
+      },
+      "women": {
+        "typical_neurochemistry": "Often more serotonin-sensitive for emotional connection, respond strongly to oxytocin through emotional intimacy, conversation, and feeling understood",
+        "oxytocin_triggers": "Emotional conversation, feeling heard and understood, eye contact, verbal expressions of care, consistency and reliability",
+        "dopamine_needs": "Women with high dopamine need excitement and growth, not just stability and safety",
+        "attraction_patterns": "Often respond well to emotional intelligence and depth, but also need challenge and adventure to maintain attraction",
+        "dating_tips": "Women often bond through conversation and emotional availability. Deep conversations, genuine emotional engagement, and showing you understand them can create powerful attraction."
+      }
+    },
+    "practical_neurochemistry_applications": {
+      "building_attraction": {
+        "high_serotonin_types": "Create emotional safety through active listening, emotional intelligence, and showing you understand them deeply",
+        "high_dopamine_types": "Match their energy, share exciting goals, challenge them, and show you have your own ambitions",
+        "balanced_approach": "Learn your archetype's neurochemistry and communicate in ways that trigger the right responses in your date"
+      },
+      "reading_signals": {
+        "serotonin_signs": "They seem relaxed, emotionally present, make eye contact, share feelings openly",
+        "dopamine_signs": "They seem excited, energetic, talk about goals and ambitions, appear confident and forward-moving",
+        "oxytocin_signs": "Physical closeness, lingering touches, deep eye contact, feeling of safety and comfort, wanting to spend more time together",
+        "mismatch_signals": "If you're high serotonin and they're only high dopamine, you might feel they're too superficial. If you're high dopamine and they're only high serotonin, you might feel bored."
+      },
+      "enhancing_chemistry": {
+        "for_serotonin_dominance": "Deep conversations, emotional vulnerability, creating safety, consistent communication",
+        "for_dopamine_dominance": "Exciting activities, goal-sharing, playful challenges, maintaining mystery and pursuit",
+        "for_both": "Balance emotional connection with excitement, create both safety and adventure in the relationship"
+      }
+    },
+    "common_neurochemistry_patterns": {
+      "powerful_combinations": {
+        "maiden_knight": "Both high serotonin - creates incredibly warm, nurturing, secure relationships",
+        "queen_warrior": "Both high dopamine - creates power couple energy, mutual drive and ambition",
+        "mystic_magician": "Both very high serotonin and dopamine - rare but incredibly deep and driven connections",
+        "huntress_king": "Both very high dopamine - intense, action-oriented, leadership-driven relationships"
+      },
+      "complementary_combinations": {
+        "maiden_warrior": "Warmth and nurturing meets drive and ambition - balance of stability and excitement",
+        "queen_knight": "High standards and discernment meets chivalrous protection - sophisticated yet caring",
+        "mystic_huntress": "Deep intuition meets driven action - emotional depth with purpose and direction",
+        "magician_king": "Perceptive insight meets natural leadership - emotionally intelligent strength"
+      }
+    }
+  }
+}

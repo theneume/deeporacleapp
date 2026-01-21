@@ -1,0 +1,12 @@
+services:
+  - type: web
+    name: loha-dating-coach
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: python app.py
+    envVars:
+      - key: PORT
+        value: 9024
+      - key: GEMINI_API_KEY
+        sync: false
+    plan: free

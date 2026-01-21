@@ -1,0 +1,193 @@
+{
+  "archetype_mappings": {
+    "SS": {
+      "female": {
+        "primary": "Mystic",
+        "description": "Soft, spiritual, deeply feminine, and more powerful than she knows. Creates emotional safety through presence and intuition.",
+        "dating_style": "Seeks deep soulful connections, values emotional resonance and authenticity",
+        "strengths": [
+          "Intuition",
+          "Emotional depth",
+          "Authenticity",
+          "Spiritual connection"
+        ],
+        "challenges": [
+          "Taking action",
+          "Setting boundaries",
+          "Practical dating steps"
+        ],
+        "neurochemical_profile": {
+          "serotonin": "Very High",
+          "dopamine": "Very High",
+          "description": "Highly attuned to emotional and spiritual connections. Serotonin dominance creates deep emotional stability and intuition, while elevated dopamine fuels spiritual curiosity and meaningful connections. This combination makes Mystics naturally empathetic and deeply connected to the emotional currents of relationships.",
+          "relationship_insights": "Your high serotonin gives you natural emotional intelligence - you can sense what others are feeling before they say it. This makes you incredibly attuned to bonding chemicals like oxytocin. When you feel safe and connected, you naturally create that warm, secure feeling that makes people want to stay close.",
+          "dating_implications": "You're drawn to depth over surface-level attraction. Your neurochemistry makes you sensitive to emotional authenticity - you can feel when someone's being fake. This is a superpower in dating because it protects you from shallow connections, though it can sometimes make you feel overwhelmed in the early, casual stages."
+        },
+        "male": {
+          "primary": "Magician",
+          "description": "Intuitive, creative, seeing depths others miss. Mysterious and deeply perceptive.",
+          "dating_style": "Seeks transformation and depth, wants profound understanding",
+          "strengths": [
+            "Emotional intelligence",
+            "Intuition",
+            "Insight",
+            "Depth"
+          ],
+          "challenges": [
+            "Taking initiative",
+            "Directness",
+            "Balancing depth with action"
+          ],
+          "neurochemical_profile": {
+            "serotonin": "Very High",
+            "dopamine": "Very High",
+            "description": "Deeply intuitive and emotionally perceptive. High serotonin provides exceptional emotional stability and pattern recognition, while elevated dopamine drives creative thinking and transformational insights. This neurochemical combo makes Magicians natural at understanding the hidden dynamics of attraction and connection.",
+            "relationship_insights": "Your high serotonin gives you unusual emotional intelligence - you pick up on subtle signals others miss. This makes you incredibly aware of the chemistry between people. You can sense when oxytocin (the bonding chemical) is flowing naturally, and you're drawn to relationships with that deep, secure feeling.",
+            "dating_implications": "You're not looking for surface-level attraction - you want to understand someone completely. Your neurochemistry makes you sensitive to authenticity and depth. This is powerful because you can see through games and pretense, but it can also make early dating stages feel shallow if you're expecting immediate soul-connection."
+          }
+        }
+      },
+      "SD": {
+        "female": {
+          "primary": "Maiden",
+          "description": "Wild-hearted, honest, independent yet soft inside. Radically authentic and emotionally honest.",
+          "dating_style": "Brings warmth and nurturing, naturally cares for others",
+          "strengths": [
+            "Authenticity",
+            "Nurturing",
+            "Emotional honesty",
+            "Warmth"
+          ],
+          "challenges": [
+            "Setting boundaries",
+            "Self-care",
+            "Not over-giving"
+          ],
+          "neurochemical_profile": {
+            "serotonin": "High",
+            "dopamine": "Moderate",
+            "description": "Warm, nurturing, and authentically caring. High serotonin creates natural warmth and the desire to nurture, while moderate dopamine keeps you grounded and focused on genuine connection rather than constant excitement seeking. This makes Maidens naturally supportive and deeply caring in relationships.",
+            "relationship_insights": "Your high serotonin gives you that natural warmth people are drawn to - you're the person others feel safe around. This connects beautifully with oxytocin, the bonding chemical that creates that secure, loved feeling. When you care for someone, you naturally help them feel safe and connected.",
+            "dating_implications": "You're drawn to authenticity and real connection, not games or manipulation. Your neurochemistry makes you naturally nurturing, which is incredibly attractive to people seeking genuine care and warmth. The challenge is balancing your giving nature with maintaining healthy boundaries so you don't over-invest before someone has earned that level of care."
+        },
+        "male": {
+          "primary": "Knight",
+          "description": "Chivalrous, adventurous, the protector who still writes poetry. Warmly masculine and romantically devoted.",
+          "dating_style": "Values honor and protection, wants to be the provider and protector",
+          "strengths": [
+            "Chivalry",
+            "Romance",
+            "Adventure",
+            "Protection"
+          ],
+          "challenges": [
+            "Modern dating dynamics",
+            "Being controlling",
+            "Balancing protection with respect"
+          ],
+          "neurochemical_profile": {
+            "serotonin": "High",
+            "dopamine": "Moderate",
+            "description": "Naturally protective and romantically inclined. High serotonin provides emotional stability and the protective instinct, while balanced dopamine keeps you adventurous but grounded. This creates Knights who are deeply devoted and create secure, stable relationships while still bringing excitement and romance.",
+            "relationship_insights": "Your high serotonin gives you that natural protective instinct and emotional stability - you're the rock others lean on. This connects powerfully with oxytocin, the bonding chemical that creates deep trust. When you make someone feel safe and protected, you naturally trigger that bonding response that makes relationships last.",
+            "dating_implications": "You're drawn to relationships where you can be the protector and provider, but this needs to be balanced with modern partnership dynamics. Your neurochemistry makes you naturally romantic and devoted, which is incredibly attractive. The key is channeling your protective nature into support rather than control, creating the kind of security that makes people want to stay close."
+          }
+        }
+      },
+      "DS": {
+        "female": {
+          "primary": "Queen",
+          "description": "Regal, refined, sophisticated, and demanding excellence. High standards and unapologetically commanding.",
+          "dating_style": "Has high standards, discerns quickly, won't settle for less",
+          "strengths": [
+            "Standards",
+            "Discernment",
+            "Sophistication",
+            "Leadership"
+          ],
+          "challenges": [
+            "Being open",
+            "Not being too critical",
+            "Finding equals"
+          ],
+          "neurochemical_profile": {
+            "serotonin": "Moderate",
+            "dopamine": "High",
+            "description": "Driven by excellence and achievement. Moderate serotonin provides enough emotional stability for refined decision-making, while high dopamine fuels ambition, drive, and the pursuit of the best. This creates Queens who are naturally discerning and won't settle for anything less than they deserve.",
+            "relationship_insights": "Your high dopamine gives you that drive and ambition - you're constantly moving toward the next level. In dating, this means you're attracted to excellence and accomplishment. While oxytocin (the bonding chemical) is important to you, you need more than just warmth - you need someone who can match your standards and drive.",
+            "dating_implications": "You have high standards because your neurochemistry is wired for excellence and achievement. This is actually a superpower in dating because it protects you from settling for less than you deserve. The key is learning to discern between someone who meets your standards and someone who's simply performing excellence for you."
+        },
+        "male": {
+          "primary": "Warrior",
+          "description": "Sophisticated, accomplished, the inspiring role model. Refined skills and polished excellence.",
+          "dating_style": "Confident and bold, seeks challenge and conquest in dating",
+          "strengths": [
+            "Confidence",
+            "Ambition",
+            "Challenge",
+            "Excellence"
+          ],
+          "challenges": [
+            "Emotional depth",
+            "Not being competitive",
+            "Vulnerability"
+          ],
+          "neurochemical_profile": {
+            "serotonin": "Moderate",
+            "dopamine": "High",
+            "description": "Achievement-focused and driven by challenge. Moderate serotonin provides emotional stability, while high dopamine fuels ambition, confidence, and the drive to conquer. This creates Warriors who are naturally accomplished and attracted to challenge and excellence.",
+            "relationship_insights": "Your high dopamine gives you that competitive drive and confidence - you're always pushing yourself to be better. In dating, this means you're attracted to challenge and accomplishment. You need someone who can match your energy and push you to grow, not just someone to settle down with comfortably.",
+            "dating_implications": "Your neurochemistry is wired for challenge and achievement, which makes you naturally confident and attractive. You don't want easy - you want someone who challenges you. The key is balancing that competitive drive with genuine emotional connection, creating a relationship where you grow together rather than compete."
+          }
+        }
+      },
+      "DD": {
+        "female": {
+          "primary": "Huntress",
+          "description": "Strong-bodied, strong-willed, and unapologetically fierce. Direct, purposeful, and powerfully feminine.",
+          "dating_style": "Driven and independent, knows what she wants and pursues it",
+          "strengths": [
+            "Ambition",
+            "Independence",
+            "Directness",
+            "Strength"
+          ],
+          "challenges": [
+            "Making space for connection",
+            "Vulnerability",
+            "Balancing goals with relationships"
+          ],
+          "neurochemical_profile": {
+            "serotonin": "Moderate",
+            "dopamine": "Very High",
+            "description": "Highly driven and action-oriented. Moderate serotonin provides emotional foundation, while very high dopamine fuels intense drive, ambition, and goal achievement. This creates Huntresses who are naturally powerful and pursue what they want with determination.",
+            "relationship_insights": "Your very high dopamine gives you that intense drive and energy - you're always moving forward, always pursuing. In dating, this means you go after what you want directly. While oxytocin bonding is important, you need the dopamine rush of pursuit and achievement too.",
+            "dating_implications": "Your neurochemistry is wired for action and achievement, which makes you incredibly direct and powerful in dating. You don't play games - you pursue what you want. The challenge is creating space for emotional connection and vulnerability, balancing your drive with the softer side of relationships."
+        },
+        "male": {
+          "primary": "King",
+          "description": "The alpha who leads through vision, not domination. Natural authority and protective leadership.",
+          "dating_style": "Decisive and results-oriented, natural leader in dating",
+          "strengths": [
+            "Leadership",
+            "Decisiveness",
+            "Vision",
+            "Authority"
+          ],
+          "challenges": [
+            "Emotional connection",
+            "Not being dominating",
+            "Listening"
+          ],
+          "neurochemical_profile": {
+            "serotonin": "Moderate",
+            "dopamine": "Very High",
+            "description": "Natural leadership through vision and authority. Moderate serotonin provides emotional stability, while very high dopamine drives leadership, decisiveness, and the ability to execute vision. This creates Kings who are naturally commanding and results-oriented.",
+            "relationship_insights": "Your very high dopamine gives you that natural leadership and decisiveness - you're comfortable taking charge and making things happen. In dating, this means you're decisive and results-oriented. You need someone who respects your authority but isn't intimidated by it.",
+            "dating_implications": "Your neurochemistry is wired for leadership and action, which makes you naturally commanding and attractive to people who want strong direction. You lead by vision, not domination, which is powerful when done right. The key is balancing your decisiveness with genuine emotional listening, creating a relationship where you lead with partnership rather than control."
+          }
+        }
+      }
+    }
+  }
+}
